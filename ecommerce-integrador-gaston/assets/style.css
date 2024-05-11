@@ -93,6 +93,82 @@ header {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                            SECTION OFF PRODUCTS                            */
+/* -------------------------------------------------------------------------- */
+
+.ec-product-off-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ec-product-off {
+  max-width: 1000vh;
+  padding: 200px;
+}
+
+.ec-offert-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.ec-product-offer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-basis: calc(33.33% - 20px); /* Ajusta el tamaño de cada producto */
+  margin: 20px;
+  border: 1px solid #ccc;
+  width: 150px;
+  height: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+#left,
+#right {
+  background-color: rgb(255, 255, 82);
+  border: 1px solid black;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  font-size: 1.5em;
+}
+
+span {
+  background: rgb(144, 8, 4);
+  background: linear-gradient(
+    90deg,
+    rgba(144, 8, 4, 0.8827906162464986) 0%,
+    rgba(249, 96, 96, 1) 45%,
+    rgba(255, 59, 0, 0.8715861344537815) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Para Safari */
+  background-clip: text;
+  color: transparent;
+}
+
+#btn-addCart-Off {
+  background-color: #fce622dc;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+/* -------------------------------------------------------------------------- */
 /*                            SECTION PRODUCT PAGE                            */
 /* -------------------------------------------------------------------------- */
 

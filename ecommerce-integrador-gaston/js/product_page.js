@@ -3,9 +3,8 @@ const products = d.getElementById("product-page");
 
 const getProducts = async () => {
   try {
-    let res = await fetch("https://fakestoreapi.com/products");
+    let res = await fetch("https://fakestoreapi.com/products?limit=12");
     let json = await res.json();
-    console.log(json);
 
     const newArrayProduct = json.map((js) => {
       let objectProduct = {
@@ -27,7 +26,6 @@ const getProducts = async () => {
       </div>
       </div>`;
     });
-    console.log(newArrayProduct);
   } catch {}
 };
 
