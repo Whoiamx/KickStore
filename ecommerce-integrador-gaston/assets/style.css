@@ -85,8 +85,9 @@ header {
 }
 
 .product-title {
-  font-size: 0.1rem;
+  font-size: 0.3rem;
   overflow: hidden;
+  height: 20px;
 }
 #product-page {
   display: flex;
