@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                HEADER                               */
+/* -------------------------------------------------------------------------- */
+
+header {
+  background-color: #fce622dc;
+  display: flex;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 110px;
+  top: 0.2px;
+}
+
+#logo {
+  width: 80px;
+  height: 80px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-ec-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.nav-ec-list a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  text-shadow: 0.5px 0.5px 0.5px whitesmoke;
+}
+
+.nav-ec-list a:hover {
+  color: white;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                SECTION HERO                                */
+/* -------------------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1200px;
+}
+
+#ec-hero {
+  width: 1000px;
+  height: 500px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            SECTION PRODUCT PAGE                            */
+/* -------------------------------------------------------------------------- */
+
+.ec-product-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-title {
+  font-size: 0.8rem;
+}
+#product-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 120px;
+}
+.product-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 200px;
+  height: 220px;
+}
+.product {
+  display: flex;
+  justify-content: center;
+  flex-basis: calc(33.33% - 20px); /* Ajusta el tamaño de cada producto */
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 200px;
+  height: 220px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+#btn-addCart {
+  background-color: #fce622dc;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               SECTION CONTACT                              */
+/* -------------------------------------------------------------------------- */
+
+.ec-contact {
+  display: flex;
+  padding: 2rem;
+  background-color: #f8ea68dc;
+}
+
+.ec-contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  gap: 0.5rem;
+}
+
+input {
+  width: 40rem;
+}
+
+.btn-send-form {
+  width: 7rem;
+  border-radius: 14px;
+}
