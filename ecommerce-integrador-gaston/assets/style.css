@@ -77,6 +77,33 @@ header {
 /*                            SECTION PRODUCT PAGE                            */
 /* -------------------------------------------------------------------------- */
 
+.ec-product-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title-ec-product {
+  font-size: 1.6em;
+}
+
+.ec-filter {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+#btn-filter {
+  padding: 10px;
+  border-radius: 7px;
+  height: 45px;
+  width: 150px;
+  background-color: rgb(255, 255, 82);
+}
+
 .ec-product-page {
   display: flex;
   flex-direction: column;
@@ -94,7 +121,7 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 120px;
+  padding: 50px;
 }
 .product-container {
   display: flex;

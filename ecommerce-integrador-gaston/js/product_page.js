@@ -8,7 +8,12 @@ const getProducts = async () => {
     console.log(json);
 
     const newArrayProduct = json.map((js) => {
-      let objectProduct = { title: js.title, img: js.image, price: js.price };
+      let objectProduct = {
+        title: js.title,
+        img: js.image,
+        price: js.price,
+        category: js.category,
+      };
       return objectProduct;
     });
     newArrayProduct.forEach((el) => {
