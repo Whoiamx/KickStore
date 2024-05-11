@@ -23,8 +23,8 @@ header {
 }
 
 #logo {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 .nav {
@@ -57,14 +57,27 @@ header {
 
 .hero {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
+  padding: 100px;
+  gap: 5rem;
+}
+
+#hero-title {
+  font-size: 2em;
+  color: #fce622dc;
+  text-shadow: 1px 2px 3px black;
+}
+
+#hero-subtitle {
+  color: #141414;
+  font-size: 0.9em;
 }
 
 #ec-hero {
   width: 1000px;
-  height: 500px;
+  height: 400px;
 }
 
 .hero-text {
