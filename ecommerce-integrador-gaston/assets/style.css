@@ -85,7 +85,7 @@ header {
 }
 
 .product-title {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 #product-page {
   display: flex;
@@ -100,9 +100,9 @@ header {
   justify-content: center;
   text-align: center;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   width: 200px;
-  height: 220px;
+  height: 200px;
 }
 .product {
   display: flex;
@@ -111,19 +111,23 @@ header {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 200px;
+  width: 150px;
   height: 220px;
 }
 
 img {
   width: 100px;
-  height: 100px;
+  height: 90px;
 }
 
 #btn-addCart {
   background-color: #fce622dc;
   padding: 5px;
   border-radius: 10px;
+}
+
+#btn-addCart:hover {
+  background-color: rgb(255, 255, 82);
 }
 
 /* -------------------------------------------------------------------------- */
