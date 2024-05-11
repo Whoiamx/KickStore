@@ -204,6 +204,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 1000vh;
 }
 
 .product-title {
@@ -235,7 +236,7 @@ span {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 150px;
+  width: 70px;
   height: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
