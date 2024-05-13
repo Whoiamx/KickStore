@@ -59,13 +59,12 @@ header {
   justify-content: center;
   align-items: center;
   max-width: 1000vh;
-  padding: 2vh;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 #hero-title {
@@ -81,14 +80,15 @@ header {
 }
 
 #ec-hero {
-  width: 1000px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-text {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
+  padding: 1.1em;
 }
 
 /* -------------------------------------------------------------------------- */
