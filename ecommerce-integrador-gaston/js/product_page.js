@@ -98,4 +98,4 @@ const getProducts = async () => {
   } catch {}
 };
 
-export { getProducts };
+export { getProducts, crossBtn, btnClothes, btnElectro, btnJoyery };
