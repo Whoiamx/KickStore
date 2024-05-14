@@ -6,7 +6,6 @@ const getElementsOffer = async () => {
   try {
     let res = await fetch("https://fakestoreapi.com/products?limit=3");
     let json = await res.json();
-    console.log(json);
 
     const arrayProductsOfer = json.map((js) => {
       let productLimit = {
@@ -17,7 +16,6 @@ const getElementsOffer = async () => {
       return productLimit;
     });
 
-    console.log(arrayProductsOfer);
     arrayProductsOfer.forEach((el) => {
       containerOffer.innerHTML += `<div class="product-offer">
       <img src="${el.img}" alt="">
