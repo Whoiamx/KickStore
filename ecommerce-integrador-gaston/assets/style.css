@@ -267,6 +267,7 @@ img {
 .product-offer:hover {
   opacity: 0.9;
   transform: scale(0.9);
+  box-shadow: 5px 5px 5px black;
 }
 /* -------------------------------------------------------------------------- */
 /*                               SECTION CONTACT                              */
