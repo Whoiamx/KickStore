@@ -262,6 +262,12 @@ img {
   text-decoration: none;
   display: none;
 }
+
+.product:hover,
+.product-offer:hover {
+  opacity: 0.9;
+  transform: scale(0.9);
+}
 /* -------------------------------------------------------------------------- */
 /*                               SECTION CONTACT                              */
 /* -------------------------------------------------------------------------- */
