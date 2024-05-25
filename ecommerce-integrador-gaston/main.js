@@ -4,6 +4,7 @@ import {
   btnJoyery,
   crossBtn,
   getProducts,
+  products,
 } from "./js/product_page.js";
 import { getElementsOffer } from "./js/ofert_page.js";
 
@@ -14,7 +15,7 @@ d.addEventListener("DOMContentLoaded", (e) => {
   getElementsOffer();
 });
 
-d.addEventListener("click", (e) => {
+d.addEventListener("click", async (e) => {
   if (
     e.target === btnClothes ||
     e.target === btnElectro ||
@@ -25,5 +26,9 @@ d.addEventListener("click", (e) => {
 
   if (e.target === crossBtn) {
     crossBtn.style.setProperty("display", "none");
+    btnJoyery.classList.remove("btn-orange");
+    btnClothes.classList.remove("btn-orange");
+    btnElectro.classList.remove("btn-orange");
+    products.innerHTML = getProducts();
   }
 });

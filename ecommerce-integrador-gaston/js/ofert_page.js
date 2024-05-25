@@ -25,7 +25,9 @@ const getElementsOffer = async () => {
         
         </div>`;
     });
-  } catch {}
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export { getElementsOffer };
