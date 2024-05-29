@@ -66,6 +66,7 @@ header {
   justify-content: center;
   align-items: center;
   max-width: 1000vh;
+  background-color: #eeeeee;
 }
 
 .hero {
@@ -113,6 +114,7 @@ header {
 .ec-product-off {
   max-width: 1000vh;
   padding: 120px;
+  background-color: #eeeeee;
 }
 
 .ec-offert-container {
@@ -141,6 +143,7 @@ header {
   height: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   gap: 10px;
+  background-color: white;
 }
 
 #left,
@@ -176,6 +179,8 @@ span {
 }
 
 .btn-orange {
+  color: orange;
+
   box-shadow: 5px 5px 5px black;
   border: 2px solid black;
 }
@@ -218,6 +223,7 @@ span {
   justify-content: center;
   align-items: center;
   max-width: 1000vh;
+  background-color: #eeeeee;
 }
 
 .product-title {
@@ -252,6 +258,7 @@ span {
   width: 70px;
   height: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 img {
