@@ -26,6 +26,13 @@ header {
   height: 60px;
 }
 
+.logo-ec {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav {
   display: flex;
   justify-content: center;
@@ -70,17 +77,17 @@ header {
 #hero-title {
   font-size: 2em;
   color: #fce622dc;
-  text-shadow: 1px 2px 3px black;
+  text-shadow: 0.5px 0.5px 0.5px black;
 }
 
 #hero-subtitle {
   color: #141414;
-  font-size: 0.9em;
+  font-size: 0.5em;
   text-align: end;
 }
 
 #ec-hero {
-  width: 100%;
+  width: 120vh;
   height: 100%;
 }
 
