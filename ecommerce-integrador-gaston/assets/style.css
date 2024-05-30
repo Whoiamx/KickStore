@@ -75,7 +75,7 @@ header {
 }
 
 .nav-ec-ul a:hover {
-  color: #4b4b4b;
+  color: #00a650;
 }
 
 .about {
@@ -356,7 +356,7 @@ textarea {
 }
 
 label {
-  color: #3484fa;
+  color: black;
 }
 
 .btn-send-form {
