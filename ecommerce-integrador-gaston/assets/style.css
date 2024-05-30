@@ -28,8 +28,8 @@ header {
 }
 
 #cart {
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
 }
 
 .logo-ec {
@@ -343,19 +343,28 @@ img {
 
 .ec-contact {
   display: flex;
-  padding: 2rem;
+  padding: 1.2rem;
   background-color: #f8ea68dc;
+  font-size: 0.8em;
 }
 
 .ec-contact-form {
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  gap: 0.5rem;
+  gap: 0.8rem;
+}
+
+h4 {
+  font-size: 1.8em;
 }
 
 input {
   width: 40rem;
+}
+
+label {
+  color: #3484fa;
 }
 
 .btn-send-form {
