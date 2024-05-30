@@ -6,6 +6,7 @@
   list-style: none;
   text-decoration: none;
   color: black;
+  scroll-behavior: smooth;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -358,6 +359,41 @@ img {
   transform: scale(0.9);
   box-shadow: 5px 5px 5px black;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              ABOUT US SECTION                              */
+/* -------------------------------------------------------------------------- */
+
+.ec-about-us {
+  background-color: #f8ea68dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  height: 40vh;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.4em;
+  width: 400px;
+  height: 400px;
+}
+
+.about-title {
+  font-size: 1.2rem;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.about-subtitle {
+  text-wrap: nowrap;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               SECTION CONTACT                              */
 /* -------------------------------------------------------------------------- */
@@ -365,7 +401,7 @@ img {
 .ec-contact {
   display: flex;
   padding: 1.2rem;
-  background-color: #f8ea68dc;
+  background-color: #ffe600;
   font-size: 0.8em;
 }
 
