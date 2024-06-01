@@ -326,7 +326,17 @@ span {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 70px;
+  width: 100px;
+  height: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.products {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 210px;
   height: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
@@ -378,7 +388,7 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: em;
   font-size: 0.4em;
   width: 400px;
   height: 400px;
