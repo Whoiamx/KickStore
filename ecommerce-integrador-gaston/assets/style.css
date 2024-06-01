@@ -378,7 +378,7 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
   font-size: 0.4em;
   width: 400px;
   height: 400px;
@@ -392,6 +392,11 @@ img {
 
 .about-subtitle {
   text-wrap: nowrap;
+}
+
+.logo-card {
+  width: 60px;
+  height: 60px;
 }
 
 /* -------------------------------------------------------------------------- */
