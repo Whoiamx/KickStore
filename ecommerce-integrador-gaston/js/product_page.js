@@ -105,4 +105,6 @@ const getProducts = async () => {
   filterTotal();
 };
 
+const addToCart = () => {};
+
 export { getProducts, crossBtn, btnClothes, btnElectro, btnJoyery, products };

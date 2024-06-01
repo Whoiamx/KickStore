@@ -402,6 +402,7 @@ img {
 
 .about-subtitle {
   text-wrap: nowrap;
+  font-size: 2px;
 }
 
 .logo-card {
@@ -444,4 +445,8 @@ label {
   width: 7rem;
   border-radius: 14px;
   cursor: pointer;
+}
+
+.btn-send-form:hover {
+  background-color: #00a650;
 }
