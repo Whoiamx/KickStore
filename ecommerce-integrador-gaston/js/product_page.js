@@ -1,24 +1,29 @@
 const d = document;
 const products = d.getElementById("product-page");
-const btnClothes = d.querySelector(".clothes");
-const btnElectro = d.querySelector(".electro");
-const btnJoyery = d.querySelector(".joyery");
+const btnGaming = d.querySelector(".gaming");
+const btnMobile = d.querySelector(".electro");
+const btnAudio = d.querySelector(".audio");
 
 const crossBtn = d.querySelector(".cross");
 
 const getProducts = async () => {
-  let res = await fetch("https://fakestoreapi.com/products?limit=12");
-  let json = await res.json();
+  let res = await fetch("https://fakestoreapi.in/api/products?limit=12");
+  let responseParser = await res.json();
 
-  const newArrayProduct = json.map((js) => {
+  let productsResponse = await responseParser.products;
+
+  console.log(productsResponse);
+
+  const newArrayProduct = productsResponse.map((product) => {
     let objectProduct = {
-      title: js.title,
-      img: js.image,
-      price: js.price,
-      category: js.category,
+      title: product.title,
+      img: product.image,
+      price: product.price,
+      category: product.category,
     };
     return objectProduct;
   });
+  console.log(newArrayProduct);
 
   newArrayProduct.forEach((el) => {
     products.innerHTML += `
@@ -33,71 +38,71 @@ const getProducts = async () => {
   });
 
   const filterTotal = async () => {
-    const clothesFilter = newArrayProduct.filter((arr) => {
-      return arr.category === "men's clothing";
+    const gamingFilter = newArrayProduct.filter((arr) => {
+      return arr.category === "gaming";
     });
 
-    const electroFilter = newArrayProduct.filter((arr) => {
-      return arr.category === "electronics";
+    const mobileFilter = newArrayProduct.filter((arr) => {
+      return arr.category === "mobile";
     });
 
-    const joyeryFilter = newArrayProduct.filter((arr) => {
-      return arr.category === "jewelery";
+    const audioFilter = newArrayProduct.filter((arr) => {
+      return arr.category === "audio";
     });
 
     d.addEventListener("click", (e) => {
-      if (e.target === btnClothes) {
+      if (e.target === btnGaming) {
         products.innerHTML = "";
-        clothesFilter.forEach((clothes) => {
+        gamingFilter.forEach((games) => {
           products.innerHTML += `
            <div class="products">
            <div class="product-container">
-            <img src="${clothes.img}" alt="">
-            <h4 class="product-title">${clothes.title}</h4>
-            <p>$ ${clothes.price}</p>
+            <img src="${games.img}" alt="">
+            <h4 class="product-title">${games.title}</h4>
+            <p>$ ${games.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
         });
-        btnElectro.classList.remove("btn-orange");
-        btnJoyery.classList.remove("btn-orange");
-        btnClothes.classList.add("btn-orange");
+        btnMobile.classList.remove("btn-orange");
+        btnAudio.classList.remove("btn-orange");
+        btnGaming.classList.add("btn-orange");
       }
 
-      if (e.target === btnElectro) {
+      if (e.target === btnMobile) {
         products.innerHTML = "";
-        electroFilter.forEach((clothes) => {
+        mobileFilter.forEach((mobiles) => {
           products.innerHTML += `
            <div class="products">
            <div class="product-container">
-            <img src="${clothes.img}" alt="">
-            <h4 class="product-title">${clothes.title}</h4>
-            <p>$ ${clothes.price}</p>
+            <img src="${mobiles.img}" alt="">
+            <h4 class="product-title">${mobiles.title}</h4>
+            <p>$ ${mobiles.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
         });
-        btnElectro.classList.add("btn-orange");
-        btnClothes.classList.remove("btn-orange");
-        btnJoyery.classList.remove("btn-orange");
+        btnMobile.classList.add("btn-orange");
+        btnGaming.classList.remove("btn-orange");
+        btnAudio.classList.remove("btn-orange");
       }
 
-      if (e.target === btnJoyery) {
+      if (e.target === btnAudio) {
         products.innerHTML = "";
-        joyeryFilter.forEach((clothes) => {
+        audioFilter.forEach((audi) => {
           products.innerHTML += `
            <div class="products">
            <div class="product-container">
-            <img src="${clothes.img}" alt="">
-            <h4 class="product-title">${clothes.title}</h4>
-            <p>$ ${clothes.price}</p>
+            <img src="${audi.img}" alt="">
+            <h4 class="product-title">${audi.title}</h4>
+            <p>$ ${audi.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
         });
-        btnJoyery.classList.add("btn-orange");
-        btnClothes.classList.remove("btn-orange");
-        btnElectro.classList.remove("btn-orange");
+        btnAudio.classList.add("btn-orange");
+        btnGaming.classList.remove("btn-orange");
+        btnMobile.classList.remove("btn-orange");
       }
     });
   };
@@ -107,4 +112,4 @@ const getProducts = async () => {
 
 const addToCart = () => {};
 
-export { getProducts, crossBtn, btnClothes, btnElectro, btnJoyery, products };
+export { getProducts, crossBtn, btnGaming, btnMobile, btnAudio, products };

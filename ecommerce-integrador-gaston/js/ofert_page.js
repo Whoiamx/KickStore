@@ -4,10 +4,12 @@ const containerOffer = d.querySelector(".ec-product-offer");
 
 const getElementsOffer = async () => {
   try {
-    let res = await fetch("https://fakestoreapi.com/products?limit=3");
-    let json = await res.json();
+    let res = await fetch("https://fakestoreapi.in/api/products?limit=3");
 
-    const arrayProductsOfer = json.map((js) => {
+    let json = await res.json();
+    let products = await json.products;
+
+    const arrayProductsOfer = products.map((js) => {
       let productLimit = {
         title: js.title,
         img: js.image,

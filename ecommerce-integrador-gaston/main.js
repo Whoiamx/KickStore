@@ -1,7 +1,7 @@
 import {
-  btnClothes,
-  btnElectro,
-  btnJoyery,
+  btnGaming,
+  btnMobile,
+  btnAudio,
   crossBtn,
   getProducts,
   products,
@@ -10,25 +10,25 @@ import { getElementsOffer } from "./js/ofert_page.js";
 
 const d = document;
 
-d.addEventListener("DOMContentLoaded", (e) => {
+d.addEventListener("DOMContentLoaded", async (e) => {
   getProducts();
   getElementsOffer();
 });
 
 d.addEventListener("click", async (e) => {
   if (
-    e.target === btnClothes ||
-    e.target === btnElectro ||
-    e.target === btnJoyery
+    e.target === btnGaming ||
+    e.target === btnMobile ||
+    e.target === btnAudio
   ) {
     crossBtn.style.setProperty("display", "block");
   }
 
   if (e.target === crossBtn) {
     crossBtn.style.setProperty("display", "none");
-    btnJoyery.classList.remove("btn-orange");
-    btnClothes.classList.remove("btn-orange");
-    btnElectro.classList.remove("btn-orange");
+    btnAudio.classList.remove("btn-orange");
+    btnGaming.classList.remove("btn-orange");
+    btnMobile.classList.remove("btn-orange");
     products.innerHTML = getProducts();
   }
 });
