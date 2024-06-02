@@ -21,6 +21,7 @@ header {
   padding: 1rem;
   width: 100%;
   gap: 5em;
+  border-bottom: 1px solid black;
 }
 
 #logo {
@@ -326,7 +327,7 @@ span {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 100px;
+  width: 70px;
   height: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
@@ -366,8 +367,9 @@ img {
 .product:hover,
 .product-offer:hover {
   opacity: 0.9;
-  transform: scale(0.9);
+  transform: scale(1.1);
   box-shadow: 5px 5px 5px black;
+  border: 2px solid #00a650;
 }
 
 /* -------------------------------------------------------------------------- */

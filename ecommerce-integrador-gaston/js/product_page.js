@@ -31,7 +31,7 @@ const getProducts = async () => {
       <div class="product-container">
       <img src="${el.img}" alt="">
       <h4 class="product-title">${el.title}</h4>
-      <p>$ ${el.price}</p>
+      <p> USD ${el.price}</p>
       <button id="btn-addCart">Agregar al carrito</button>
       </div>
       </div>`;
@@ -59,7 +59,7 @@ const getProducts = async () => {
            <div class="product-container">
             <img src="${games.img}" alt="">
             <h4 class="product-title">${games.title}</h4>
-            <p>$ ${games.price}</p>
+            <p> USD ${games.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
@@ -77,7 +77,7 @@ const getProducts = async () => {
            <div class="product-container">
             <img src="${mobiles.img}" alt="">
             <h4 class="product-title">${mobiles.title}</h4>
-            <p>$ ${mobiles.price}</p>
+            <p>USD ${mobiles.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
@@ -95,7 +95,7 @@ const getProducts = async () => {
            <div class="product-container">
             <img src="${audi.img}" alt="">
             <h4 class="product-title">${audi.title}</h4>
-            <p>$ ${audi.price}</p>
+            <p> USD ${audi.price}</p>
             <button id="btn-addCart">Agregar al carrito</button>
             </div>
             </div>`;
@@ -109,7 +109,5 @@ const getProducts = async () => {
 
   filterTotal();
 };
-
-const addToCart = () => {};
 
 export { getProducts, crossBtn, btnGaming, btnMobile, btnAudio, products };
