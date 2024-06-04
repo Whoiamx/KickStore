@@ -48,6 +48,7 @@ const renderProducts = async (product) => {
       </div>`;
   });
 };
+
 // FILTRO DE PRODUCTOS
 const filterTotal = async () => {
   const arrayToFilter = await getRenderProducts();
@@ -63,6 +64,8 @@ const filterTotal = async () => {
   const audioFilter = arrayToFilter.filter((arr) => {
     return arr.category === "audio";
   });
+
+  // FUNCION DE FILTRO DE CATEGORIAS
 
   d.addEventListener("click", (e) => {
     if (e.target === btnGaming) {
@@ -124,4 +127,12 @@ const filterTotal = async () => {
 filterTotal();
 getRenderProducts();
 renderProducts();
-export { getProducts, crossBtn, btnGaming, btnMobile, btnAudio, products };
+export {
+  renderProducts,
+  getProducts,
+  crossBtn,
+  btnGaming,
+  btnMobile,
+  btnAudio,
+  products,
+};
