@@ -1,0 +1,16 @@
+@media (max-width: 1200px) {
+  body {
+    background-color: red;
+  }
+
+  .ec-contact {
+    width: 100%;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #contact-center {
+    margin-left: 0%;
+  }
+}

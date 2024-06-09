@@ -11,6 +11,7 @@ const getElementsOffer = async () => {
 
     const arrayProductsOfer = products.map((js) => {
       let productLimit = {
+        id: js.id,
         title: js.title,
         img: js.image,
         price: js.price,
@@ -23,7 +24,7 @@ const getElementsOffer = async () => {
       <img src="${el.img}" alt="">
         <p class="product-title">${el.title}</p>
         <p>$ ${el.price}</p>
-        <button id="btn-addCart-Off">Agregar al carrito</button>
+        <button id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
         
         </div>`;
     });

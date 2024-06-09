@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/responsive.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
-    <title>Kick Store</title>
+    <title>Kick Store Argentina</title>
   </head>
   <body>
     <header>
@@ -32,12 +33,14 @@
 
         <div class="search-navbar">
           <div class="about">
-            <ul class="nav-ec-ul">
-              <li><a href="#offert">Ofertas</a></li>
-              <li><a href="#productHead">Productos</a></li>
-              <li><a href="#contact-center">Contacto</a></li>
-              <li><a href="#">Ayuda</a></li>
-            </ul>
+            <nav>
+              <ul class="nav-ec-ul">
+                <li><a href="#offert">Ofertas</a></li>
+                <li><a href="#productHead">Productos</a></li>
+                <li><a href="#contact-center">Contacto</a></li>
+                <li><a href="#">Ayuda</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -95,7 +98,7 @@
           <p class="about-subtitle">Paga con tarjeta, débito, efectivo.</p>
         </div>
         <div class="about-card">
-          <img class="logo-card" src="/assets/shipped_411763.png" alt="" />
+          <img class="logo-card" src="./assets/shipped_411763.png" alt="" />
           <p class="about-title">Envío gratis desde $ 23.000</p>
           <p class="about-subtitle">Solo por tu primera compra</p>
         </div>
@@ -114,21 +117,74 @@
       <section class="ec-contact">
         <form id="contact-center" class="ec-contact-form" action="#">
           <h4>¿Con qué podemos ayudarte?</h4>
-          <label for=""> Nombre </label>
-          <input type="text" />
-          <label for=""> Apellido </label>
-          <input type="text" />
+          <label for="name"> Nombre </label>
+          <input
+            type="text"
+            placeholder="Ingrese su nombre"
+            id="name"
+            title="Ingrese letras unicamente"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            required
+          />
+          <label for="apellido"> Apellido </label>
+          <input
+            type="text"
+            name="apellidoUser"
+            placeholder="Ingresa el apellido"
+            title="Ingrese letras unicamente"
+            id="apellido"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            required
+          />
           <label for=""> Email </label>
-          <input type="email" />
+          <input
+            type="email"
+            name="emailUser"
+            placeholder="Ingresa el mail personal"
+            id="email"
+            pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+            title="Ingrese un mail con un formato valido"
+            required
+          />
           <label for=""> Telefono </label>
-          <input type="tel" />
+          <input
+            type="tel"
+            name="telUser"
+            placeholder="Ingresa el celular personal"
+            id="celular"
+            pattern=""
+            title="Ingrese un celular con un formato valido"
+            required
+          />
           <label for="">Comentarios</label>
-          <textarea name="" id=""></textarea>
+          <textarea
+            name="areatextUser"
+            id=""
+            cols="20"
+            rows="5"
+            data-pattern="^.{1,255}$"
+            title="Tu comentario no debe exceder los 255 caracteres"
+            required
+          ></textarea>
           <button class="btn-send-form">Enviar</button>
         </form>
       </section>
     </main>
-    <footer></footer>
+    <footer>
+      <div class="foot-nav">
+        <ul class="foot-list">
+          <li><a href="">Trabaja con nosotros</a></li>
+          <li><a href="">Terminos y Condiciones</a></li>
+          <li><a href="">Promociones</a></li>
+          <li><a href="">Informacion al usuario financiero</a></li>
+          <li><a href="">Defensa del Consumidor</a></li>
+        </ul>
+      </div>
+      <div class="foot-text">
+        <p>Copyright © 1999-2024 Kick Store S.R.L.</p>
+        <p>Calle Falsa, piso 2, CP 1254, Buenos Aires, Argentina</p>
+      </div>
+    </footer>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

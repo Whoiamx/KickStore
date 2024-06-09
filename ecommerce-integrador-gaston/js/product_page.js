@@ -22,6 +22,7 @@ const getRenderProducts = async () => {
 
   const newArrayProduct = productToRender.map((product) => {
     let objectProduct = {
+      id: product.id,
       title: product.title,
       img: product.image,
       price: product.price,
@@ -43,12 +44,11 @@ const renderProducts = async (product) => {
       <img src="${el.img}" alt="">
       <h4 class="product-title">${el.title}</h4>
       <p> USD ${el.price}</p>
-      <button id="btn-addCart">Agregar al carrito</button>
+      <button id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
       </div>
       </div>`;
   });
 };
-
 // FILTRO DE PRODUCTOS
 const filterTotal = async () => {
   const arrayToFilter = await getRenderProducts();
@@ -65,8 +65,6 @@ const filterTotal = async () => {
     return arr.category === "audio";
   });
 
-  // FUNCION DE FILTRO DE CATEGORIAS
-
   d.addEventListener("click", (e) => {
     if (e.target === btnGaming) {
       products.innerHTML = "";
@@ -77,7 +75,7 @@ const filterTotal = async () => {
             <img src="${games.img}" alt="">
             <h4 class="product-title">${games.title}</h4>
             <p> USD ${games.price}</p>
-            <button id="btn-addCart">Agregar al carrito</button>
+            <button id="btn-addCart-Off" data-id="${games.id}" data-title="${games.title}" data-img="${games.img}" data-price="USD ${games.price}">Agregar al carrito</button>
             </div>
             </div>`;
       });
@@ -95,7 +93,7 @@ const filterTotal = async () => {
             <img src="${mobiles.img}" alt="">
             <h4 class="product-title">${mobiles.title}</h4>
             <p>USD ${mobiles.price}</p>
-            <button id="btn-addCart">Agregar al carrito</button>
+            <button id="btn-addCart-Off" data-id="${mobiles.id}" data-title="${mobiles.title}" data-img="${mobiles.img}" data-price="USD ${mobiles.price}">Agregar al carrito</button>
             </div>
             </div>`;
       });
@@ -113,7 +111,7 @@ const filterTotal = async () => {
             <img src="${audi.img}" alt="">
             <h4 class="product-title">${audi.title}</h4>
             <p> USD ${audi.price}</p>
-            <button id="btn-addCart">Agregar al carrito</button>
+            <button id="btn-addCart-Off" data-id="${audi.id}" data-title="${audi.title}" data-img="${audi.img}" data-price="USD ${audi.price}">Agregar al carrito</button>
             </div>
             </div>`;
       });
@@ -128,8 +126,8 @@ filterTotal();
 getRenderProducts();
 renderProducts();
 export {
-  renderProducts,
   getProducts,
+  renderProducts,
   crossBtn,
   btnGaming,
   btnMobile,
