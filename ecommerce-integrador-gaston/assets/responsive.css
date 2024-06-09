@@ -1,8 +1,4 @@
 @media (max-width: 1200px) {
-  body {
-    background-color: red;
-  }
-
   .ec-contact {
     width: 100%;
     height: 60vh;
@@ -12,5 +8,70 @@
 
   #contact-center {
     margin-left: 0%;
+  }
+
+  .about-card {
+    width: 100%;
+  }
+
+  footer {
+    font-size: 0.2em;
+  }
+
+  .hero-text {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 414px) {
+  header {
+    padding: 0%;
+  }
+
+  .logeiton {
+    width: 50%;
+  }
+
+  .nav-ec-ul {
+    gap: 2em;
+  }
+
+  #searcher {
+    font-size: 0.2em;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    text-align: center;
+    width: 42%;
+    margin: auto;
+    padding: 0;
+  }
+
+  .ec-product-offer {
+    width: 40%;
+  }
+
+  #offert {
+    width: 100%;
+  }
+  #left,
+  #right {
+    display: none;
+  }
+
+  .ec-product-off h3 {
+    font-size: 1.4rem;
+    text-wrap: nowrap;
+  }
+
+  #offert p {
+    display: none;
+  }
+
+  #btn-filter {
+    width: 100%;
+    text-wrap: nowrap;
   }
 }
