@@ -384,8 +384,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3em;
-  height: 40vh;
 }
 
 .about-card {
@@ -393,9 +391,9 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 1em;
   font-size: 0.4em;
-  width: 100%;
+  width: 23%;
   height: 40vh;
 }
 
