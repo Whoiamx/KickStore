@@ -134,7 +134,7 @@
   }
 
   form > * {
-    font-size: 0.5em;
+    font-size: 14px;
   }
 
   form > input {
@@ -163,5 +163,9 @@
 
   .about-subtitle {
     font-size: 1px;
+  }
+
+  .product-title {
+    font-size: 16px;
   }
 }
