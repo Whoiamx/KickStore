@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                              SIZE PARA TABLETS                             */
+/* -------------------------------------------------------------------------- */
+
 @media (max-width: 1200px) {
   .ec-contact {
     width: 100%;
@@ -24,6 +28,10 @@
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             SIZE PARA CELULARES                            */
+/* -------------------------------------------------------------------------- */
+
 @media (max-width: 414px) {
   header {
     padding: 0%;
@@ -43,10 +51,9 @@
 
   .hero-text {
     font-size: 1rem;
-    text-align: center;
-    width: 42%;
+    text-align: justify;
     margin: auto;
-    padding: 0;
+    padding: 15px;
   }
 
   .ec-product-offer {
@@ -73,5 +80,84 @@
   #btn-filter {
     width: 100%;
     text-wrap: nowrap;
+  }
+
+  #menu-burguer {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+
+  #ec-hero {
+    width: 100%;
+    height: 30vh;
+  }
+
+  #hero-title {
+    font-size: 2em;
+    text-align: start;
+  }
+
+  #hero-subtitle {
+    font-size: 0.5em;
+    text-align: start;
+    text-wrap: nowrap;
+  }
+
+  .product-offer {
+    margin: 10px;
+  }
+
+  .product {
+    width: 100%;
+  }
+
+  .ec-filter {
+    gap: 1rem;
+  }
+
+  .ec-about-us {
+    flex-direction: column;
+  }
+  .about-card {
+    height: 20vh;
+  }
+
+  .ec-contact-form {
+    gap: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ec-contact {
+    height: 45vh;
+  }
+
+  form > * {
+    font-size: 0.5em;
+  }
+
+  form > input {
+    width: 400px;
+  }
+
+  textarea {
+    width: 350px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .foot-list {
+    align-items: normal;
+  }
+
+  .foot-text {
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 }
