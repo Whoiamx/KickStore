@@ -3,12 +3,25 @@ const products = d.getElementById("product-page");
 const btnGaming = d.querySelector(".gaming");
 const btnMobile = d.querySelector(".electro");
 const btnAudio = d.querySelector(".audio");
-
 const crossBtn = d.querySelector(".cross");
+const cartButton = d.getElementById("cart");
+const cartContainer = d.querySelector(".cart-container");
+let buttons = d.getElementsByTagName("button");
+console.log(buttons);
+
+let productPage = []; // Devuelve los productos originales - no tocar
+
+let productRender = []; // Variable que se va a utilizar para renderizar los productos
+
+let cart = [];
+
+let filter = "";
+
+const categorias = [];
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
-  let res = await fetch("https://fakestoreapi.in/api/products?limit=12");
+  let res = await fetch("https://fakestoreapi.in/api/products?limit=16");
   let responseParser = await res.json();
 
   let productsResponse = await responseParser.products;
@@ -28,106 +41,144 @@ const getRenderProducts = async () => {
       price: product.price,
       category: product.category,
     };
+    // if (!categorias.includes(product.category)) {
+    //   categorias.push(product.category);
+    // }
+
     return objectProduct;
   });
+
+  productPage = newArrayProduct;
+  productRender = newArrayProduct;
+
+  renderCards(productRender);
   return newArrayProduct;
 };
 
-// RENDER DE PRODUCTOS
-const renderProducts = async (product) => {
-  const arrayProductNew = await getRenderProducts();
-
-  arrayProductNew.forEach((el) => {
+// FUNCION QUE RENDERIZA EL ARRAY DE PRODUCTOS QUE NECESITE
+const renderCards = (productsArray) => {
+  products.innerHTML = "";
+  productsArray.forEach((el) => {
     products.innerHTML += `
-      <div class="product">
-      <div class="product-container">
-      <img src="${el.img}" alt="">
-      <h4 class="product-title">${el.title}</h4>
-      <p> USD ${el.price}</p>
-      <button id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
-      </div>
-      </div>`;
+          <div class="product">
+          <div class="product-container">
+          <img src="${el.img}" alt="">
+          <h4 class="product-title">${el.title}</h4>
+          <p> USD ${el.price}</p>
+          <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
+          </div>
+          </div>`;
   });
 };
-// FILTRO DE PRODUCTOS
-const filterTotal = async () => {
-  const arrayToFilter = await getRenderProducts();
 
-  const gamingFilter = arrayToFilter.filter((arr) => {
-    return arr.category === "gaming";
+d.addEventListener("click", (e) => {
+  if (e.target === btnGaming) {
+    productRender = productPage.filter((arr) => {
+      return arr.category === "gaming";
+    });
+
+    btnGaming.classList.add("btn-orange");
+    btnMobile.classList.remove("btn-orange");
+    btnAudio.classList.remove("btn-orange");
+    renderCards(productRender);
+  }
+
+  if (e.target === btnAudio) {
+    productRender = productPage.filter((arr) => {
+      return arr.category === "audio";
+    });
+    btnGaming.classList.remove("btn-orange");
+    btnMobile.classList.remove("btn-orange");
+    btnAudio.classList.add("btn-orange");
+    renderCards(productRender);
+  }
+
+  if (e.target === btnMobile) {
+    productRender = productPage.filter((arr) => {
+      return arr.category === "mobile";
+    });
+    btnGaming.classList.remove("btn-orange");
+    btnMobile.classList.add("btn-orange");
+    btnAudio.classList.remove("btn-orange");
+    renderCards(productRender);
+  }
+});
+
+const filterActionSelection = () => {
+  d.addEventListener("click", async (e) => {
+    if (
+      e.target === btnGaming ||
+      e.target === btnMobile ||
+      e.target === btnAudio
+    ) {
+      crossBtn.style.setProperty("display", "block");
+    }
+
+    if (e.target === crossBtn) {
+      crossBtn.style.setProperty("display", "none");
+      btnAudio.classList.remove("btn-orange");
+      btnGaming.classList.remove("btn-orange");
+      btnMobile.classList.remove("btn-orange");
+
+      renderCards(productPage);
+    }
   });
+};
+filterActionSelection();
 
-  const mobileFilter = arrayToFilter.filter((arr) => {
-    return arr.category === "mobile";
-  });
+//FUNCION QUE AGREGA ELEMENTOS AL CARRITO
 
-  const audioFilter = arrayToFilter.filter((arr) => {
-    return arr.category === "audio";
-  });
-
+const addToCartProducts = () => {
   d.addEventListener("click", (e) => {
-    if (e.target === btnGaming) {
-      products.innerHTML = "";
-      gamingFilter.forEach((games) => {
-        products.innerHTML += `
-           <div class="products">
-           <div class="product-container">
-            <img src="${games.img}" alt="">
-            <h4 class="product-title">${games.title}</h4>
-            <p> USD ${games.price}</p>
-            <button id="btn-addCart-Off" data-id="${games.id}" data-title="${games.title}" data-img="${games.img}" data-price="USD ${games.price}">Agregar al carrito</button>
-            </div>
-            </div>`;
-      });
-      btnMobile.classList.remove("btn-orange");
-      btnAudio.classList.remove("btn-orange");
-      btnGaming.classList.add("btn-orange");
-    }
+    let elementsToCart = e.target.dataset;
 
-    if (e.target === btnMobile) {
-      products.innerHTML = "";
-      mobileFilter.forEach((mobiles) => {
-        products.innerHTML += `
-           <div class="products">
-           <div class="product-container">
-            <img src="${mobiles.img}" alt="">
-            <h4 class="product-title">${mobiles.title}</h4>
-            <p>USD ${mobiles.price}</p>
-            <button id="btn-addCart-Off" data-id="${mobiles.id}" data-title="${mobiles.title}" data-img="${mobiles.img}" data-price="USD ${mobiles.price}">Agregar al carrito</button>
-            </div>
-            </div>`;
-      });
-      btnMobile.classList.add("btn-orange");
-      btnGaming.classList.remove("btn-orange");
-      btnAudio.classList.remove("btn-orange");
-    }
+    cart.push(elementsToCart);
 
-    if (e.target === btnAudio) {
-      products.innerHTML = "";
-      audioFilter.forEach((audi) => {
-        products.innerHTML += `
-           <div class="products">
-           <div class="product-container">
-            <img src="${audi.img}" alt="">
-            <h4 class="product-title">${audi.title}</h4>
-            <p> USD ${audi.price}</p>
-            <button id="btn-addCart-Off" data-id="${audi.id}" data-title="${audi.title}" data-img="${audi.img}" data-price="USD ${audi.price}">Agregar al carrito</button>
-            </div>
-            </div>`;
+    e.preventDefault();
+    if (cart.length) {
+      cartContainer.classList.remove("cart-container");
+      cartContainer.classList.add("block");
+
+      cart.forEach((el) => {
+        cartContainer.innerHTML += `
+        <div class="product">
+        <div class="product-container">
+        <img src="${el.img}" alt="">
+        <h4 class="product-title">${el.title}</h4>
+        <p> USD ${el.price}</p>
+        <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
+        </div>
+        </div>`;
       });
-      btnAudio.classList.add("btn-orange");
-      btnGaming.classList.remove("btn-orange");
-      btnMobile.classList.remove("btn-orange");
+
+      checkVisibilityCart();
     }
   });
 };
 
-filterTotal();
-getRenderProducts();
-renderProducts();
+/**
+ REVISAR DUPLICADOS Y COSAS UNDEFINED EN EL CARRITO
+ */
+
+//FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
+
+const checkVisibilityCart = () => {
+  d.addEventListener("click", (e) => {
+    if (e.target === cartButton) {
+      if (cartContainer.classList.contains("cart-container")) {
+        cartContainer.classList.remove("cart-container");
+        cartContainer.classList.add("block");
+      } else {
+        cartContainer.classList.add("cart-container");
+        cartContainer.classList.remove("block");
+      }
+    }
+  });
+};
+
 export {
-  getProducts,
-  renderProducts,
+  getRenderProducts,
+  addToCartProducts,
   crossBtn,
   btnGaming,
   btnMobile,
