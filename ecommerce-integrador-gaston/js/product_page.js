@@ -145,10 +145,16 @@ const addToCartProducts = () => {
         <div class="product-container">
         <img src="${el.img}" alt="">
         <h4 class="product-title">${el.title}</h4>
-        <p> USD ${el.price}</p>
-        <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
+        <p>  ${el.price}</p>
+        <div class="price-content">
+        <a id="minor">-</a>
+        <p>1</p>
+        <a id="major">+</a>
         </div>
-        </div>`;
+        </div>
+        
+        </div>
+        `;
       });
 
       checkVisibilityCart();
