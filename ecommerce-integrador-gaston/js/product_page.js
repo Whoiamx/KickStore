@@ -6,18 +6,12 @@ const btnAudio = d.querySelector(".audio");
 const crossBtn = d.querySelector(".cross");
 const cartButton = d.getElementById("cart");
 const cartContainer = d.querySelector(".cart-container");
-let buttons = d.getElementsByTagName("button");
-console.log(buttons);
 
 let productPage = []; // Devuelve los productos originales - no tocar
 
 let productRender = []; // Variable que se va a utilizar para renderizar los productos
 
-let cart = [];
-
-let filter = "";
-
-const categorias = [];
+let cart = []; // Contiene los elementos/datos de productos que se agregan al carrito
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
@@ -41,9 +35,6 @@ const getRenderProducts = async () => {
       price: product.price,
       category: product.category,
     };
-    // if (!categorias.includes(product.category)) {
-    //   categorias.push(product.category);
-    // }
 
     return objectProduct;
   });
@@ -60,14 +51,14 @@ const renderCards = (productsArray) => {
   products.innerHTML = "";
   productsArray.forEach((el) => {
     products.innerHTML += `
-          <div class="product">
-          <div class="product-container">
-          <img src="${el.img}" alt="">
-          <h4 class="product-title">${el.title}</h4>
-          <p> USD ${el.price}</p>
-          <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
-          </div>
-          </div>`;
+      <div class="product">
+      <div class="product-container">
+      <img src="${el.img}" alt="">
+      <h4 class="product-title">${el.title}</h4>
+      <p> USD ${el.price}</p>
+      <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
+      </div>
+      </div>`;
   });
 };
 
@@ -124,22 +115,27 @@ const filterActionSelection = () => {
     }
   });
 };
-filterActionSelection();
 
 //FUNCION QUE AGREGA ELEMENTOS AL CARRITO
 
 const addToCartProducts = () => {
   d.addEventListener("click", (e) => {
-    let elementsToCart = e.target.dataset;
+    let elementsToCart = {
+      id: e.target.dataset.id,
+      img: e.target.dataset.img,
+      title: e.target.dataset.title,
+      price: e.target.dataset.price,
+    };
 
     cart.push(elementsToCart);
 
-    e.preventDefault();
-    if (cart.length) {
+    if (cart.length && e.target.matches("[data-price]")) {
+      e.preventDefault();
       cartContainer.classList.remove("cart-container");
       cartContainer.classList.add("block");
 
       cart.forEach((el) => {
+        console.log(cart);
         cartContainer.innerHTML += `
         <div class="product">
         <div class="product-container">
@@ -152,19 +148,21 @@ const addToCartProducts = () => {
         <a id="major">+</a>
         </div>
         </div>
-        
         </div>
+        
         `;
       });
 
+      cartContainer.innerHTML += `<div>
+      <p>Total:  </p>
+      
+      </div>`;
       checkVisibilityCart();
     }
   });
 };
 
-/**
- REVISAR DUPLICADOS Y COSAS UNDEFINED EN EL CARRITO
- */
+/*REVISAR DUPLICADOS Y COSAS UNDEFINED EN EL CARRITO*/
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
 
@@ -182,12 +180,5 @@ const checkVisibilityCart = () => {
   });
 };
 
-export {
-  getRenderProducts,
-  addToCartProducts,
-  crossBtn,
-  btnGaming,
-  btnMobile,
-  btnAudio,
-  products,
-};
+filterActionSelection();
+export { getRenderProducts, addToCartProducts };
