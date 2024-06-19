@@ -6,6 +6,8 @@ const btnAudio = d.querySelector(".audio");
 const crossBtn = d.querySelector(".cross");
 const cartButton = d.getElementById("cart");
 const cartContainer = d.querySelector(".cart-container");
+const addBtnCart = d.querySelectorAll("#addBtn");
+// console.log(addBtnCart);
 
 let productPage = []; // Devuelve los productos originales - no tocar
 
@@ -49,16 +51,25 @@ const getRenderProducts = async () => {
 // FUNCION QUE RENDERIZA EL ARRAY DE PRODUCTOS QUE NECESITE
 const renderCards = (productsArray) => {
   products.innerHTML = "";
+
   productsArray.forEach((el) => {
-    products.innerHTML += `
+    const content = `
       <div class="product">
       <div class="product-container">
       <img src="${el.img}" alt="">
       <h4 class="product-title">${el.title}</h4>
       <p> USD ${el.price}</p>
-      <button class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
+      <button id="${el.id}" class="addBtn" id="btn-addCart-Off" data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="USD ${el.price}">Agregar al carrito</button>
       </div>
       </div>`;
+
+    products.innerHTML += content;
+
+    const btnAddCart = d.getElementById(`${el.id}`);
+
+    console.log(btnAddCart);
+
+    btnAddCart.addEventListener("click", addToCart);
   });
 };
 
@@ -118,67 +129,106 @@ const filterActionSelection = () => {
 
 //FUNCION QUE AGREGA ELEMENTOS AL CARRITO
 
-const addToCartProducts = () => {
-  d.addEventListener("click", (e) => {
-    let elementsToCart = {
-      id: e.target.dataset.id,
-      img: e.target.dataset.img,
-      title: e.target.dataset.title,
-      price: e.target.dataset.price,
-    };
+const addToCart = (e) => {
+  console.log(cart);
+  let flag = false;
 
-    cart.push(elementsToCart);
+  cart.forEach((el) => {
+    if (e.target.dataset.id == el.id) {
+      flag = true;
 
-    if (cart.length && e.target.matches("[data-price]")) {
-      e.preventDefault();
-      cartContainer.classList.remove("cart-container");
-      cartContainer.classList.add("block");
+      el.quantity += 1;
 
-      cart.forEach((el) => {
-        console.log(cart);
-        cartContainer.innerHTML += `
-        <div class="product">
-        <div class="product-container">
-        <img src="${el.img}" alt="">
-        <h4 class="product-title">${el.title}</h4>
-        <p>  ${el.price}</p>
-        <div class="price-content">
-        <a id="minor">-</a>
-        <p>1</p>
-        <a id="major">+</a>
-        </div>
-        </div>
-        </div>
-        
-        `;
-      });
-
-      cartContainer.innerHTML += `<div>
-      <p>Total:  </p>
-      
-      </div>`;
-      checkVisibilityCart();
+      return;
     }
   });
+  if (flag) {
+    return;
+  }
+
+  let elementsToCart = {
+    id: e.target.dataset.id,
+    img: e.target.dataset.img,
+    title: e.target.dataset.title,
+    price: e.target.dataset.price,
+    quantity: 1,
+  };
+
+  cart.push(elementsToCart);
 };
 
-/*REVISAR DUPLICADOS Y COSAS UNDEFINED EN EL CARRITO*/
+// const addToCartProducts = () => {
+//   d.addEventListener("click", (e) => {
+//     let elementsToCart = {
+//       id: e.target.dataset.id,
+//       img: e.target.dataset.img,
+//       title: e.target.dataset.title,
+//       price: e.target.dataset.price,
+//     };
+
+//     console.log(addBtnCart);
+//     cart.push(elementsToCart);
+
+//     if (cart.length && e.target.matches("[data-price]")) {
+//       e.preventDefault();
+//       cartContainer.classList.remove("cart-container");
+//       cartContainer.classList.add("block");
+
+//       cartContainer.innerHTML = "";
+
+//       cart.forEach((el) => {
+//         console.log(cart);
+//         cartContainer.innerHTML += `
+//         <div class="product">
+//         <div class="product-container">
+//         <img src="${el.img}" alt="">
+//         <h4 class="product-title">${el.title}</h4>
+//         <p>  ${el.price}</p>
+//         <div class="price-content">
+//         <a id="minor">-</a>
+//         <p>1</p>
+//         <a id="major">+</a>
+//         </div>
+//         </div>
+//         </div>
+
+//         `;
+//       });
+
+//       cartContainer.innerHTML += `<div>
+//       <p>Total:  </p>
+
+//       </div>`;
+//       checkVisibilityCart();
+//     }
+//   });
+// };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
 
-const checkVisibilityCart = () => {
-  d.addEventListener("click", (e) => {
-    if (e.target === cartButton) {
-      if (cartContainer.classList.contains("cart-container")) {
-        cartContainer.classList.remove("cart-container");
-        cartContainer.classList.add("block");
-      } else {
-        cartContainer.classList.add("cart-container");
-        cartContainer.classList.remove("block");
-      }
-    }
-  });
-};
+cartButton.addEventListener("click", (e) => {
+  if (cartContainer.classList.contains("cart-container")) {
+    cartContainer.classList.remove("cart-container");
+    cartContainer.classList.add("block");
+  } else {
+    cartContainer.classList.add("cart-container");
+    cartContainer.classList.remove("block");
+  }
+});
+
+// const checkVisibilityCart = () => {
+//   d.addEventListener("click", (e) => {
+//     if (e.target === cartButton) {
+//       if (cartContainer.classList.contains("cart-container")) {
+//         cartContainer.classList.remove("cart-container");
+//         cartContainer.classList.add("block");
+//       } else {
+//         cartContainer.classList.add("cart-container");
+//         cartContainer.classList.remove("block");
+//       }
+//     }
+//   });
+// };
 
 filterActionSelection();
-export { getRenderProducts, addToCartProducts };
+export { getRenderProducts }; //addToCartProducts };
