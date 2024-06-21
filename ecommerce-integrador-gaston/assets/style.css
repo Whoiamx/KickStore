@@ -39,6 +39,7 @@ li > a {
 #cart {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .logo-ec {
@@ -71,6 +72,7 @@ li > a {
   text-align: center;
   color: black;
   text-shadow: 0.5px 0.5px 0.5px whitesmoke;
+  transition: 1s ease;
 }
 
 .nav-ec-list a:hover {
@@ -85,6 +87,7 @@ li > a {
 
 .nav-ec-ul a:hover {
   color: #00a650;
+  border-bottom: 1px solid green;
 }
 
 .about {
@@ -123,21 +126,24 @@ li > a {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1000vh;
-  background-color: #eeeeee;
+  width: 100%;
+  background-image: url(./D_NQ_732245-MLA76247333205_052024-OO.webp);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 55vh;
 }
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  position: absolute;
+  top: 55vh;
 }
 
 #hero-title {
   font-size: 2.8em;
   color: #fce622dc;
   text-align: center;
-  text-shadow: 0.5px 0.5px 0.5px black;
+  text-shadow: 2.5px 2.5px 2.5px black;
   animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1)
     both;
 }
@@ -179,12 +185,6 @@ li > a {
 #ec-hero {
   width: 100%;
   height: 45vh;
-}
-
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -258,7 +258,8 @@ span {
   text-shadow: 0.3px 0.4px black;
 }
 
-#btn-addCart-Off {
+#btn-addCart-Off,
+.addBtn {
   background-color: #fce622dc;
   padding: 2px;
   border-radius: 5px;
@@ -372,6 +373,10 @@ img {
 .cross {
   text-decoration: none;
   display: none;
+  background-color: crimson;
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid black;
 }
 
 #btn-addCart-Off:hover {
@@ -495,9 +500,10 @@ footer {
   z-index: 1;
   position: absolute;
   width: 220px;
-  height: fit-content;
+  min-height: 300px;
   background-color: #ffe600;
-  border: 0.5px solid black;
+  border: 1px solid black;
+  border-radius: 3.5px;
 }
 
 .price-content {
@@ -527,7 +533,7 @@ footer {
   right: 560px;
   background-color: green;
   padding: 2px;
-
+  min-height: 30px;
   width: 15px;
   border-radius: 25px;
 }
