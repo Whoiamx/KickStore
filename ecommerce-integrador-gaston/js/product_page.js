@@ -256,10 +256,10 @@ const functionInit = () => {
   filterActionSelection();
   addToCartProducts();
   emptyCart();
-  localStoreCart();
+
   quantityNumberCart();
 };
 
 functionInit();
 
-export { getRenderProducts, addToCartProducts }; //addToCartProducts };
+export { getRenderProducts, addToCartProducts, localStoreCart }; //addToCartProducts };
