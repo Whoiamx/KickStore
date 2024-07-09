@@ -16,8 +16,6 @@ let productRender = []; // Variable que se va a utilizar para renderizar los pro
 
 let cart = []; // Contiene los elementos/datos de productos que se agregan al carrito
 
-let cartLocal = localStorage.setItem("cart", JSON.stringify(cart));
-
 // PETICION API PRODUCTOS
 const getProducts = async () => {
   try {
@@ -154,9 +152,8 @@ const addToCartProducts = () => {
           quantity: 1,
         };
         cart.push(newProduct);
-
-        localStorage.setItem("cart", JSON.stringify(cart));
       }
+      localStorage.setItem("cart", JSON.stringify(cart));
       counterCart.textContent = cart.length;
 
       updateCartUI();
@@ -211,25 +208,25 @@ const emptyCart = () => {
 const localStoreCart = () => {
   const LSCart = JSON.parse(localStorage.getItem("cart"));
 
-  if (LSCart.length) {
-    LSCart.forEach((el) => {
-      cartContainer.innerHTML += `
+  console.log(LSCart);
+
+  LSCart.forEach((el) => {
+    cartContainer.innerHTML += `
       <div class="product">
-      <div class="product-container">
-      <img src="${el.img}" alt="">
-      <h4 class="product-title">${el.title}</h4>
-      <p> USD ${el.quantity * el.price}</p>
+        <div class="product-container">
+          <img src="${el.img}" alt="">
+          <h4 class="product-title">${el.title}</h4>
+          <p> USD ${el.quantity * el.price}</p>
           <div class="price-content">
-          <a id="minor">-</a>
-          <p>${el.quantity}</p>
-          <a id="major">+</a>
+            <a id="minor">-</a>
+            <p>${el.quantity}</p>
+            <a id="major">+</a>
           </div>
-          </div>
-          </div>
-          `;
-    });
-  }
-  console.log(LSCart.length);
+        </div>
+      </div>
+    `;
+  });
+  quantityNumberCart();
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -248,6 +245,7 @@ cartButton.addEventListener("click", (e) => {
 
 const quantityNumberCart = () => {
   const LSCart = JSON.parse(localStorage.getItem("cart"));
+  console.log(LSCart);
   const count = LSCart.reduce((acum, current) => {
     acum + current.quantity;
   });
@@ -259,9 +257,8 @@ const functionInit = () => {
   addToCartProducts();
   emptyCart();
   localStoreCart();
-  quantityNumberCart();
 };
 
 functionInit();
 
-export { getRenderProducts, addToCartProducts };
+export { getRenderProducts, addToCartProducts }; //addToCartProducts };
