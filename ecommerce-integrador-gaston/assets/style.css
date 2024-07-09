@@ -533,3 +533,26 @@ footer {
   color: white;
   text-align: center;
 }
+
+.foot-list a:hover {
+  color: #00a650;
+}
+
+header {
+  position: sticky;
+  top: 0.2px;
+  z-index: 1;
+}
+
+.overlay {
+  background-color: green;
+  position: sticky;
+  bottom: 0.1px;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.overlay p {
+  color: white;
+  text-shadow: 1.5px 1.5px 2.5px black;
+}

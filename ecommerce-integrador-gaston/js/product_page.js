@@ -6,9 +6,9 @@ const btnAudio = d.querySelector(".audio");
 const crossBtn = d.querySelector(".cross");
 const cartButton = d.getElementById("cart");
 const cartContainer = d.querySelector(".cart-container");
-const addBtnCart = d.querySelectorAll("#addBtn");
 const counterCart = d.querySelector(".cart-length-number");
-// console.log(addBtnCart);
+const main = d.getElementById("main");
+console.log(main);
 
 let productPage = []; // Devuelve los productos originales - no tocar
 
@@ -127,11 +127,16 @@ const filterActionSelection = () => {
 };
 
 const addToCartProducts = () => {
-  const localStore = localStorage.getItem("cart");
-
   d.addEventListener("click", (e) => {
     if (e.target.matches("[data-price]")) {
       e.preventDefault();
+
+      main.innerHTML += `
+        <div class="overlay">
+        <p>Producto agregado con exito</p>
+        <div>`;
+
+      const overlay = d.querySelector(".overlay");
 
       const productId = e.target.dataset.id;
       const existingProduct = cart.find((item) => item.id === productId);
