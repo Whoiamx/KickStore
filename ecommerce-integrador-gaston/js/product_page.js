@@ -18,12 +18,16 @@ let cart = []; // Contiene los elementos/datos de productos que se agregan al ca
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
-  let res = await fetch("https://fakestoreapi.in/api/products?limit=16");
-  let responseParser = await res.json();
+  try {
+    let res = await fetch("https://fakestoreapi.in/api/products?limit=16");
+    let responseParser = await res.json();
 
-  let productsResponse = await responseParser.products;
+    let productsResponse = await responseParser.products;
 
-  return productsResponse;
+    return productsResponse;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //NUEVO ARRAY DE PRODUCTOS CON LAS CATEGORIAS NECESARIAS
@@ -59,7 +63,7 @@ const renderCards = (productsArray) => {
       <div class="product-container">
       <img src="${el.img}" alt="">
       <h4 class="product-title">${el.title}</h4>
-      <p> USD${el.price}</p>
+      <p> $ ${el.price}</p>
       <button id="${el.id}" class="addBtn"  data-id="${el.id}" data-title="${el.title}" data-img="${el.img}" data-price="${el.price}">Agregar al carrito</button>
       </div>
       </div>`;
@@ -122,88 +126,9 @@ const filterActionSelection = () => {
   });
 };
 
-//FUNCION QUE AGREGA ELEMENTOS AL CARRITO
-
-// (FUNCION CLASE PARTICULAR PROGRAMACION)
-
-// const addToCart = (e) => {
-//   console.log(cart);
-//   let flag = false;
-
-//   cart.forEach((el) => {
-//     if (e.target.dataset.id == el.id) {
-//       flag = true;
-
-//       el.quantity += 1;
-
-//       return;
-//     }
-//   });
-//   if (flag) {
-//     return;
-//   }
-
-//   let elementsToCart = {
-//     id: e.target.dataset.id,
-//     img: e.target.dataset.img,
-//     title: e.target.dataset.title,
-//     price: e.target.dataset.price,
-//     quantity: 0,
-//   };
-
-//   cart.push(elementsToCart);
-// };
-
-// const addToCartProducts = () => {
-//   d.addEventListener("click", (e) => {
-//     let elementsToCart = {
-//       id: e.target.dataset.id,
-//       img: e.target.dataset.img,
-//       title: e.target.dataset.title,
-//       price: e.target.dataset.price,
-//       quantity: 0,
-//     };
-
-//     cart.push(elementsToCart);
-//     console.log(elementsToCart.quantity);
-
-//     if (cart.length && e.target.matches("[data-price]")) {
-//       console.log(cart);
-//       e.preventDefault();
-//       cartContainer.classList.remove("cart-container");
-//       cartContainer.classList.add("block");
-
-//       cartContainer.innerHTML = "";
-//       cart.forEach((el) => {
-//         console.log(cart);
-//         el.quantity += 1;
-//         cartContainer.innerHTML += `
-//         <div class="product">
-//         <div class="product-container">
-//         <img src="${el.img}" alt="">
-//         <h4 class="product-title">${el.title}</h4>
-//         <p>  ${el.price}</p>
-//         <div class="price-content">
-//         <a id="minor">-</a>
-//         <p>${el.quantity}</p>
-//         <a id="major">+</a>
-//         </div>
-//         </div>
-//         </div>
-
-//         `;
-//       });
-
-//       cartContainer.innerHTML += `<div>
-//       <p>Total:  </p>
-
-//       </div>`;
-//       checkVisibilityCart();
-//     }
-//   });
-// };
-
 const addToCartProducts = () => {
+  const localStore = localStorage.getItem("cart");
+
   d.addEventListener("click", (e) => {
     if (e.target.matches("[data-price]")) {
       e.preventDefault();
@@ -222,6 +147,8 @@ const addToCartProducts = () => {
           quantity: 1,
         };
         cart.push(newProduct);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
       }
       counterCart.textContent = cart.length;
 
@@ -255,21 +182,47 @@ const updateCartUI = () => {
   });
 
   cartContainer.innerHTML += `<div>
-    <p>Total:  </p>
+    <p>Total: ${cart.length}  </p>
   </div>`;
 };
 
 const emptyCart = () => {
-  if (cart.length === 0) {
+  const localStore = localStorage.getItem("cart");
+
+  if (cart.length === 0 && !localStore) {
     return (cartContainer.innerHTML += `
       <div class="empty-cart">
-        <div class="product-container-empty">
-          <p> Aun no has agregado ningun producto al carrito :(</p>
+      <div class="product-container-empty">
+      <p> Aun no has agregado ningun producto al carrito :(</p>
+      </div>
+      </div>
+      </div>
+      `);
+  }
+};
+
+//FUNCION QUE GUARDA ELEMENTOS DEL CARRITO EN EL LOCALSTORAGE
+const localStoreCart = () => {
+  const LSCart = JSON.parse(localStorage.getItem("cart"));
+
+  console.log(LSCart);
+
+  LSCart.forEach((el) => {
+    cartContainer.innerHTML += `
+      <div class="product">
+        <div class="product-container">
+          <img src="${el.img}" alt="">
+          <h4 class="product-title">${el.title}</h4>
+          <p> USD ${el.quantity * el.price}</p>
+          <div class="price-content">
+            <a id="minor">-</a>
+            <p>${el.quantity}</p>
+            <a id="major">+</a>
           </div>
         </div>
       </div>
-    `);
-  }
+    `;
+  });
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -284,24 +237,11 @@ cartButton.addEventListener("click", (e) => {
   }
 });
 
-const checkVisibilityCart = () => {
-  d.addEventListener("click", (e) => {
-    if (e.target === cartButton) {
-      if (cartContainer.classList.contains("cart-container")) {
-        cartContainer.classList.remove("cart-container");
-        cartContainer.classList.add("block");
-      } else {
-        cartContainer.classList.add("cart-container");
-        cartContainer.classList.remove("block");
-      }
-    }
-  });
-};
-
 const functionInit = () => {
   filterActionSelection();
   addToCartProducts();
   emptyCart();
+  localStoreCart();
 };
 
 functionInit();
