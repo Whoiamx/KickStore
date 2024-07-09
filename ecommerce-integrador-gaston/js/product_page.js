@@ -240,7 +240,8 @@ cartButton.addEventListener("click", (e) => {
 //FUNCION QUE ACTUALIZA EL NUMERO DEL CARRITO
 
 const quantityNumberCart = () => {
-  if (cart) {
+  if (cart.length) {
+    console.log(cart);
     const count = cart.reduce((acum, current) => {
       acum + current.quantity;
     });
@@ -257,4 +258,4 @@ const functionInit = () => {
 
 functionInit();
 
-export { getRenderProducts, addToCartProducts }; //addToCartProducts };
+export { getRenderProducts, addToCartProducts };
