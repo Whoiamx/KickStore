@@ -210,9 +210,9 @@ const localStoreCart = () => {
   const LSCart = JSON.parse(localStorage.getItem("cart"));
 
   console.log(LSCart);
-
-  LSCart.forEach((el) => {
-    cartContainer.innerHTML += `
+  if (!LSCart) {
+    LSCart.forEach((el) => {
+      cartContainer.innerHTML += `
       <div class="product">
         <div class="product-container">
           <img src="${el.img}" alt="">
@@ -226,7 +226,8 @@ const localStoreCart = () => {
         </div>
       </div>
     `;
-  });
+    });
+  }
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
