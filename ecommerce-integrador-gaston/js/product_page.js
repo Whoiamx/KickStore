@@ -153,7 +153,6 @@ const addToCartProducts = () => {
       counterCart.textContent = cart.length;
 
       updateCartUI();
-      checkVisibilityCart();
     }
   });
 };
@@ -237,11 +236,22 @@ cartButton.addEventListener("click", (e) => {
   }
 });
 
+//FUNCION QUE ACTUALIZA EL NUMERO DEL CARRITO
+
+const quantityNumberCart = () => {
+  const LSCart = JSON.parse(localStorage.getItem("cart"));
+  const count = LSCart.reduce((acum, current) => {
+    acum + current.quantity;
+  });
+  counterCart.innerText = "0" || count;
+};
+
 const functionInit = () => {
   filterActionSelection();
   addToCartProducts();
   emptyCart();
   localStoreCart();
+  quantityNumberCart();
 };
 
 functionInit();
