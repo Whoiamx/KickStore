@@ -206,11 +206,7 @@ const emptyCart = () => {
 
 //FUNCION QUE GUARDA ELEMENTOS DEL CARRITO EN EL LOCALSTORAGE
 const localStoreCart = () => {
-  const LSCart = JSON.parse(localStorage.getItem("cart"));
-
-  console.log(LSCart);
-
-  LSCart.forEach((el) => {
+  cart.forEach((el) => {
     cartContainer.innerHTML += `
       <div class="product">
         <div class="product-container">
@@ -244,11 +240,8 @@ cartButton.addEventListener("click", (e) => {
 //FUNCION QUE ACTUALIZA EL NUMERO DEL CARRITO
 
 const quantityNumberCart = () => {
-  const LSCart = JSON.parse(localStorage.getItem("cart"));
-
-  console.log(LSCart);
-  if (LSCart) {
-    const count = LSCart.reduce((acum, current) => {
+  if (cart) {
+    const count = cart.reduce((acum, current) => {
       acum + current.quantity;
     });
     counterCart.innerText = "0" || count;
