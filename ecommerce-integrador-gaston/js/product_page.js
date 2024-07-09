@@ -209,25 +209,25 @@ const emptyCart = () => {
 const localStoreCart = () => {
   const LSCart = JSON.parse(localStorage.getItem("cart"));
 
-  console.log(LSCart);
-  if (!LSCart) {
+  if (LSCart.length) {
     LSCart.forEach((el) => {
       cartContainer.innerHTML += `
       <div class="product">
-        <div class="product-container">
-          <img src="${el.img}" alt="">
-          <h4 class="product-title">${el.title}</h4>
-          <p> USD ${el.quantity * el.price}</p>
+      <div class="product-container">
+      <img src="${el.img}" alt="">
+      <h4 class="product-title">${el.title}</h4>
+      <p> USD ${el.quantity * el.price}</p>
           <div class="price-content">
-            <a id="minor">-</a>
-            <p>${el.quantity}</p>
-            <a id="major">+</a>
+          <a id="minor">-</a>
+          <p>${el.quantity}</p>
+          <a id="major">+</a>
           </div>
-        </div>
-      </div>
-    `;
+          </div>
+          </div>
+          `;
     });
   }
+  console.log(LSCart.length);
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
