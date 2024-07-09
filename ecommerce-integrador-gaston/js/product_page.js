@@ -16,6 +16,8 @@ let productRender = []; // Variable que se va a utilizar para renderizar los pro
 
 let cart = []; // Contiene los elementos/datos de productos que se agregan al carrito
 
+let cartLocal = localStorage.setItem("cart", JSON.stringify(cart));
+
 // PETICION API PRODUCTOS
 const getProducts = async () => {
   try {
@@ -256,10 +258,10 @@ const functionInit = () => {
   filterActionSelection();
   addToCartProducts();
   emptyCart();
-
+  localStoreCart();
   quantityNumberCart();
 };
 
 functionInit();
 
-export { getRenderProducts, addToCartProducts, localStoreCart }; //addToCartProducts };
+export { getRenderProducts, addToCartProducts };
