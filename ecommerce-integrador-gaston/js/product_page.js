@@ -245,11 +245,14 @@ cartButton.addEventListener("click", (e) => {
 
 const quantityNumberCart = () => {
   const LSCart = JSON.parse(localStorage.getItem("cart"));
+
   console.log(LSCart);
-  const count = LSCart.reduce((acum, current) => {
-    acum + current.quantity;
-  });
-  counterCart.innerText = "0" || count;
+  if (LSCart) {
+    const count = LSCart.reduce((acum, current) => {
+      acum + current.quantity;
+    });
+    counterCart.innerText = "0" || count;
+  }
 };
 
 const functionInit = () => {
