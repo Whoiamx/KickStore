@@ -14,7 +14,7 @@ let productPage = []; // Devuelve los productos originales - no tocar
 
 let productRender = []; // Variable que se va a utilizar para renderizar los productos
 
-let cart = []; // Contiene los elementos/datos de productos que se agregan al carrito
+let cart = JSON.parse(localStorage.getItem("cart")) || []; // Contiene los elementos/datos de productos que se agregan al carrito
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
