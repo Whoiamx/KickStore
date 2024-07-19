@@ -8,13 +8,16 @@ const cartButton = d.getElementById("cart");
 const cartContainer = d.querySelector(".cart-container");
 const counterCart = d.querySelector(".cart-length-number");
 const main = d.getElementById("main");
-console.log(main);
+
+let count = 0;
 
 let productPage = []; // Devuelve los productos originales - no tocar
 
 let productRender = []; // Variable que se va a utilizar para renderizar los productos
 
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // Contiene los elementos/datos de productos que se agregan al carrito
+
+let moneyToPay = JSON.parse(localStorage.getItem("moneyToPay")) || []; // Array que contiene los precios de los productos agregados al carrito
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
@@ -126,17 +129,18 @@ const filterActionSelection = () => {
   });
 };
 
+//   //PENDIENTE REVISAR EL OVERLAY
+//   main.innerHTML += `
+//   <div class="overlay">
+//   <p>Producto agregado con exito</p>
+//   <div>`;
+
+// const overlay = d.querySelector(".overlay");
+
 const addToCartProducts = () => {
   d.addEventListener("click", (e) => {
     if (e.target.matches("[data-price]")) {
       e.preventDefault();
-
-      main.innerHTML += `
-        <div class="overlay">
-        <p>Producto agregado con exito</p>
-        <div>`;
-
-      const overlay = d.querySelector(".overlay");
 
       const productId = e.target.dataset.id;
       const existingProduct = cart.find((item) => item.id === productId);
@@ -153,12 +157,24 @@ const addToCartProducts = () => {
         };
         cart.push(newProduct);
       }
+
       localStorage.setItem("cart", JSON.stringify(cart));
       counterCart.textContent = cart.length;
 
       updateCartUI();
     }
   });
+  quantityNumberCart();
+};
+
+const calculatePrices = () => {
+  let suma = 0;
+
+  moneyToPay.forEach((el) => {
+    suma += el;
+  });
+
+  return suma;
 };
 
 const updateCartUI = () => {
@@ -167,7 +183,6 @@ const updateCartUI = () => {
   cartContainer.innerHTML = "";
 
   cart.forEach((el) => {
-    console.log(cart);
     cartContainer.innerHTML += `
       <div class="product">
         <div class="product-container">
@@ -181,18 +196,21 @@ const updateCartUI = () => {
           </div>
         </div>
       </div>
-    `;
+      `;
+    console.log(moneyToPay);
+    moneyToPay.push(el.price);
   });
-
-  cartContainer.innerHTML += `<div>
-    <p>Total: ${cart.length}  </p>
+  cartContainer.innerHTML += `
+  <div class="total-price">
+    <p>Total: USD ${calculatePrices()}  </p>
   </div>`;
+
+  localStorage.setItem("price", JSON.stringify(moneyToPay));
+  quantityNumberCart();
 };
 
 const emptyCart = () => {
-  const localStore = localStorage.getItem("cart");
-
-  if (cart.length === 0 && !localStore) {
+  if (cart.length === 0) {
     return (cartContainer.innerHTML += `
       <div class="empty-cart">
       <div class="product-container-empty">
@@ -222,7 +240,15 @@ const localStoreCart = () => {
       </div>
     `;
   });
-  quantityNumberCart();
+};
+
+//FUNCION QUE GUARDA EN EL LOCAL STORAGE EL PRECIO A PAGAR
+
+const totalLocalStorage = () => {
+  cartContainer.innerHTML += `
+  <div class="total-price">
+    <p>Total: USD ${moneyToPay}  </p>
+  </div>`;
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -237,16 +263,20 @@ cartButton.addEventListener("click", (e) => {
   }
 });
 
-//FUNCION QUE ACTUALIZA EL NUMERO DEL CARRITO
-
 const quantityNumberCart = () => {
-  if (cart.length) {
-    console.log(cart);
-    const count = cart.reduce((acum, current) => {
-      acum + current.quantity;
-    });
-    counterCart.innerText = "0" || count;
-  }
+  const SumatoryCart = cart.map((el) => {
+    return el.quantity;
+  });
+  console.log(SumatoryCart);
+
+  let valorInicial = 0;
+
+  const cartFullTotal = SumatoryCart.reduce(
+    (acumulador, valorActual) => acumulador + valorActual,
+    valorInicial
+  );
+
+  counterCart.textContent = cartFullTotal;
 };
 
 const functionInit = () => {
@@ -254,6 +284,7 @@ const functionInit = () => {
   addToCartProducts();
   emptyCart();
   localStoreCart();
+  totalLocalStorage();
 };
 
 functionInit();

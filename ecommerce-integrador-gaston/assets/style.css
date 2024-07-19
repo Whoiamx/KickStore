@@ -504,6 +504,8 @@ footer {
   background-color: #ffe600;
   border: 1px solid black;
   border-radius: 3.5px;
+  max-height: 680px;
+  overflow-y: scroll;
 }
 
 .price-content {
@@ -555,4 +557,10 @@ header {
 .overlay p {
   color: white;
   text-shadow: 1.5px 1.5px 2.5px black;
+}
+
+.total-price {
+  gap: 15px;
+  background-color: white;
+  text-align: center;
 }
