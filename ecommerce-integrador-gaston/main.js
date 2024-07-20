@@ -1,4 +1,4 @@
-import { getRenderProducts, addToCartProducts } from "./js/product_page.js";
+import { getRenderProducts } from "./js/product_page.js";
 import { getElementsOffer } from "./js/ofert_page.js";
 
 const d = document;

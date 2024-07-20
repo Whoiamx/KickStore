@@ -508,6 +508,9 @@ footer {
   overflow-y: scroll;
 }
 
+.block::-webkit-scrollbar {
+  display: none;
+}
 .price-content {
   display: flex;
   align-items: center;
@@ -560,7 +563,20 @@ header {
 }
 
 .total-price {
-  gap: 15px;
   background-color: white;
+  height: 5vh;
   text-align: center;
+  z-index: 1000;
+  position: sticky;
+  bottom: 0.1px;
+  border-top: 1.5px solid black;
+}
+
+.empty-cart {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0 auto;
 }

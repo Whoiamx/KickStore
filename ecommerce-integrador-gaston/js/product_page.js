@@ -7,9 +7,6 @@ const crossBtn = d.querySelector(".cross");
 const cartButton = d.getElementById("cart");
 const cartContainer = d.querySelector(".cart-container");
 const counterCart = d.querySelector(".cart-length-number");
-const main = d.getElementById("main");
-
-let count = 0;
 
 let productPage = []; // Devuelve los productos originales - no tocar
 
@@ -129,14 +126,6 @@ const filterActionSelection = () => {
   });
 };
 
-//   //PENDIENTE REVISAR EL OVERLAY
-//   main.innerHTML += `
-//   <div class="overlay">
-//   <p>Producto agregado con exito</p>
-//   <div>`;
-
-// const overlay = d.querySelector(".overlay");
-
 const addToCartProducts = () => {
   d.addEventListener("click", (e) => {
     if (e.target.matches("[data-price]")) {
@@ -211,7 +200,7 @@ const updateCartUI = () => {
 
 const emptyCart = () => {
   if (cart.length === 0) {
-    return (cartContainer.innerHTML += `
+    return (cartContainer.innerHTML = `
       <div class="empty-cart">
       <div class="product-container-empty">
       <p> Aun no has agregado ningun producto al carrito :(</p>
@@ -238,17 +227,8 @@ const localStoreCart = () => {
           </div>
         </div>
       </div>
-    `;
+       `;
   });
-};
-
-//FUNCION QUE GUARDA EN EL LOCAL STORAGE EL PRECIO A PAGAR
-
-const totalLocalStorage = () => {
-  cartContainer.innerHTML += `
-  <div class="total-price">
-    <p>Total: USD ${moneyToPay}  </p>
-  </div>`;
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -262,6 +242,8 @@ cartButton.addEventListener("click", (e) => {
     cartContainer.classList.remove("block");
   }
 });
+
+// FUNCION QUE CUENTA CANTIDADES DE PRODUCTOS EN EL CARRITO
 
 const quantityNumberCart = () => {
   const SumatoryCart = cart.map((el) => {
@@ -284,7 +266,6 @@ const functionInit = () => {
   addToCartProducts();
   emptyCart();
   localStoreCart();
-  totalLocalStorage();
 };
 
 functionInit();
