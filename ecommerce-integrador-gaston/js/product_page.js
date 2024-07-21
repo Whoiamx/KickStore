@@ -14,7 +14,7 @@ let productRender = []; // Variable que se va a utilizar para renderizar los pro
 
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // Contiene los elementos/datos de productos que se agregan al carrito
 
-let moneyToPay = JSON.parse(localStorage.getItem("moneyToPay")) || []; // Array que contiene los precios de los productos agregados al carrito
+let moneyToPay = []; // Array que contiene los precios de los productos agregados al carrito
 
 // PETICION API PRODUCTOS
 const getProducts = async () => {
@@ -148,7 +148,6 @@ const addToCartProducts = () => {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      counterCart.textContent = cart.length;
 
       updateCartUI();
     }
@@ -162,7 +161,8 @@ const calculatePrices = () => {
   moneyToPay.forEach((el) => {
     suma += el;
   });
-
+  console.log(moneyToPay);
+  localStorage.setItem("moneyForPay", suma);
   return suma;
 };
 
@@ -186,7 +186,7 @@ const updateCartUI = () => {
         </div>
       </div>
       `;
-    console.log(moneyToPay);
+
     moneyToPay.push(el.price);
   });
   cartContainer.innerHTML += `
@@ -194,7 +194,6 @@ const updateCartUI = () => {
     <p>Total: USD ${calculatePrices()}  </p>
   </div>`;
 
-  localStorage.setItem("price", JSON.stringify(moneyToPay));
   quantityNumberCart();
 };
 
@@ -211,8 +210,9 @@ const emptyCart = () => {
   }
 };
 
-//FUNCION QUE GUARDA ELEMENTOS DEL CARRITO EN EL LOCALSTORAGE
+//FUNCION QUE GUARDA ELEMENTOS DEL CARRITO EN EL LOCALSTORAGE CON SU TOTAL LS
 const localStoreCart = () => {
+  const localMoney = JSON.parse(localStorage.getItem("moneyForPay"));
   cart.forEach((el) => {
     cartContainer.innerHTML += `
       <div class="product">
@@ -229,6 +229,11 @@ const localStoreCart = () => {
       </div>
        `;
   });
+
+  cartContainer.innerHTML += `
+  <div class="total-price">
+    <p>Total: USD  ${localMoney}  </p>
+  </div>`;
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -249,7 +254,6 @@ const quantityNumberCart = () => {
   const SumatoryCart = cart.map((el) => {
     return el.quantity;
   });
-  console.log(SumatoryCart);
 
   let valorInicial = 0;
 
