@@ -512,6 +512,7 @@ footer {
 
 .block::-webkit-scrollbar {
   display: none;
+  scroll-behavior: smooth;
 }
 .price-content {
   display: flex;
@@ -581,4 +582,8 @@ header {
   justify-content: center;
   padding: 10px;
   margin: 0 auto;
+}
+
+label {
+  text-decoration: underline;
 }

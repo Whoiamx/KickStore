@@ -29,7 +29,13 @@ const getElementsOffer = async () => {
         </div>`;
     });
   } catch (err) {
-    console.log(err);
+    containerOffer.innerHTML = `
+    
+    <div>
+    <p>Algo fallo al buscar el stock de los productos 😅😅</p>
+    <br>
+    <p>Error: ${err} llamar a Atencion al cliente: 0800-222-4444</p>
+    </div>`;
   }
 };
 

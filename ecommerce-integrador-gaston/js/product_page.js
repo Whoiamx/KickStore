@@ -26,7 +26,13 @@ const getProducts = async () => {
 
     return productsResponse;
   } catch (err) {
-    console.log(err);
+    products.innerHTML = `
+    
+    <div>
+    <h1>Parece que algo fallo al buscar el stock de los productos 😅😅</h1>
+    <br>
+    <p>Error: ${err} llamar a Atencion al cliente: 0800-222-4444</p>
+    </div>`;
   }
 };
 
@@ -210,30 +216,33 @@ const emptyCart = () => {
   }
 };
 
-//FUNCION QUE GUARDA ELEMENTOS DEL CARRITO EN EL LOCALSTORAGE CON SU TOTAL LS
 const localStoreCart = () => {
   const localMoney = JSON.parse(localStorage.getItem("moneyForPay"));
-  cart.forEach((el) => {
-    cartContainer.innerHTML += `
-      <div class="product">
-        <div class="product-container">
-          <img src="${el.img}" alt="">
-          <h4 class="product-title">${el.title}</h4>
-          <p> USD ${el.quantity * el.price}</p>
-          <div class="price-content">
-            <a id="minor">-</a>
-            <p>${el.quantity}</p>
-            <a id="major">+</a>
-          </div>
+  let cartHTML = "";
+  if (cart.length) {
+    cart.forEach((el) => {
+      cartHTML += `
+    <div class="product">
+      <div class="product-container">
+        <img src="${el.img}" alt="">
+        <h4 class="product-title">${el.title}</h4>
+        <p> USD ${el.quantity * el.price}</p>
+        <div class="price-content">
+          <a id="minor">-</a>
+          <p>${el.quantity}</p>
+          <a id="major">+</a>
         </div>
       </div>
-       `;
-  });
+    </div>
+  `;
+    });
 
-  cartContainer.innerHTML += `
+    cartHTML += `
   <div class="total-price">
-    <p>Total: USD  ${localMoney}  </p>
+    <p>Total:  U$D  ${localMoney}  </p>
   </div>`;
+    cartContainer.innerHTML = cartHTML;
+  }
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
