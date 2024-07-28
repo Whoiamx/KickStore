@@ -146,7 +146,7 @@
             name="emailUser"
             placeholder="Ingresa el mail personal"
             id="email"
-            pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+            pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})+$"
             title="Ingrese un mail con un formato valido"
             required
           />
@@ -156,7 +156,7 @@
             name="telUser"
             placeholder="Ingresa el celular personal"
             id="celular"
-            pattern="[0-9]{9}"
+            pattern="^[09][0-9]{1,7}+$"
             title="Ingrese un celular con un formato valido"
             required
           />
@@ -166,7 +166,7 @@
             id="area"
             cols="20"
             rows="5"
-            data-pattern="^.{1,255}$"
+            data-pattern="^.{1,255}+$"
             title="Tu comentario no debe exceder los 255 caracteres"
             required
           ></textarea>
