@@ -584,6 +584,46 @@ header {
   margin: 0 auto;
 }
 
+.none {
+  display: none;
+}
+
 label {
   text-decoration: underline;
+}
+
+.ec-contact-form > input[required]:valid,
+textarea[required]:valid {
+  border: 3px solid green;
+}
+
+.ec-contact-form > input[required]:invalid,
+textarea[required]:invalid {
+  border: 2px solid red;
+}
+
+.ec-contact-form-error {
+  border: 3px solid red;
+  margin-top: -10px;
+  font-size: 80%rem;
+  background-color: red;
+  color: white;
+  transition: all 900ms ease;
+  width: 100%;
+}
+
+.Isactive {
+  display: block;
+  animation: show-message 1s 1 normal 0s ease-out both;
+}
+@keyframes show-message {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
 }

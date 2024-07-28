@@ -16,6 +16,8 @@ let cart = JSON.parse(localStorage.getItem("cart")) || []; // Contiene los eleme
 
 let moneyToPay = []; // Array que contiene los precios de los productos agregados al carrito
 
+let idElements = [];
+
 // PETICION API PRODUCTOS
 const getProducts = async () => {
   try {
@@ -185,16 +187,18 @@ const updateCartUI = () => {
           <h4 class="product-title">${el.title}</h4>
           <p> USD ${el.quantity * el.price}</p>
           <div class="price-content">
-            <a id="minor">-</a>
+            <a data-id=${el.id} id="minor">-</a>
             <p>${el.quantity}</p>
-            <a id="major">+</a>
+            <a data-id=${el.id} id="major">+</a>
           </div>
         </div>
       </div>
       `;
 
     moneyToPay.push(el.price);
+    idElements.push(el.id);
   });
+
   cartContainer.innerHTML += `
   <div class="total-price">
     <p>Total: USD ${calculatePrices()}  </p>
@@ -274,13 +278,64 @@ const quantityNumberCart = () => {
   counterCart.textContent = cartFullTotal;
 };
 
+const majorHandleEvent = () => {
+  updateCartUI();
+  const major = d.getElementById("major");
+
+  d.addEventListener("click", (e) => {
+    if (e.target === major) {
+      const productId = e.target.dataset.id;
+      const existingId = idElements.find((item) => item === productId);
+      if (existingId) {
+        console.log(existingId);
+      }
+    }
+  });
+};
+
+const validateForm = () => {
+  const form = d.getElementById("contact-center");
+  const inputForm = d.querySelectorAll(".ec-contact-form [required]");
+
+  inputForm.forEach((el) => {
+    const spanMessage = d.createElement("span");
+    spanMessage.id = el.name;
+    spanMessage.textContent = el.title;
+    spanMessage.classList.add("ec-contact-form-error", "none");
+    el.insertAdjacentElement("afterend", spanMessage);
+  });
+
+  d.addEventListener("keyup", (e) => {
+    if (e.target.matches(".ec-contact-form [required]")) {
+      let inputTarget = e.target;
+      console.log(inputTarget.name);
+      let pattern = inputTarget.pattern || inputTarget.dataset.pattern;
+      if (pattern && inputTarget.value !== "") {
+        console.log(inputTarget.value);
+        let regex = new RegExp(pattern);
+
+        return !regex.exec(inputTarget.value)
+          ? d.getElementById(inputTarget.name).classList.add("Isactive")
+          : d.getElementById(inputTarget.name).classList.remove("Isactive");
+      }
+
+      if (!pattern) {
+        return inputTarget.value === ""
+          ? d.getElementById(inputTarget.name).classList.add("IsActive")
+          : d.getElementById(inputTarget.name).classList.remove("IsActive");
+      }
+    }
+  });
+};
+
 const functionInit = () => {
   filterActionSelection();
   addToCartProducts();
   emptyCart();
   localStoreCart();
+  majorHandleEvent();
 };
 
 functionInit();
 
-export { getRenderProducts, addToCartProducts };
+export { getRenderProducts, addToCartProducts, validateForm };
