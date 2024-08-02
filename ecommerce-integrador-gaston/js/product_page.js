@@ -134,6 +134,35 @@ const filterActionSelection = () => {
   });
 };
 
+const majorHandleButton = (id) => {
+  const existingProduct = cart.find((item) => item.id === id);
+
+  if (existingProduct) {
+    existingProduct.quantity++;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartUI();
+};
+
+const minorHandleButton = (id) => {
+  const existingProduct = cart.find((item) => item.id === id);
+
+  if (existingProduct.quantity > 1) {
+    existingProduct.quantity--;
+  } else {
+    const carrito = cart.filter((e) => {
+      return e.id !== id;
+    });
+    cart = carrito;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartUI();
+};
+
 const addToCartProducts = () => {
   d.addEventListener("click", (e) => {
     if (e.target.matches("[data-price]")) {
@@ -169,7 +198,7 @@ const calculatePrices = () => {
   moneyToPay.forEach((el) => {
     suma += el;
   });
-  console.log(moneyToPay);
+
   localStorage.setItem("moneyForPay", suma);
   return suma;
 };
@@ -178,6 +207,7 @@ const updateCartUI = () => {
   cartContainer.classList.remove("cart-container");
   cartContainer.classList.add("block");
   cartContainer.innerHTML = "";
+  moneyToPay = [];
 
   cart.forEach((el) => {
     cartContainer.innerHTML += `
@@ -189,13 +219,13 @@ const updateCartUI = () => {
           <div class="price-content">
             <a data-id=${el.id} id="minor">-</a>
             <p>${el.quantity}</p>
-            <a data-id=${el.id} id="major">+</a>
+            <p data-id=${el.id} id="major">+</p>
           </div>
         </div>
       </div>
       `;
 
-    moneyToPay.push(el.price);
+    moneyToPay.push(el.price * el.quantity);
     idElements.push(el.id);
   });
 
@@ -203,10 +233,29 @@ const updateCartUI = () => {
   <div class="total-price">
     <p>Total: USD ${calculatePrices()}  </p>
   </div>`;
+  const majorButtons = document.querySelectorAll("#major");
 
+  majorButtons.forEach((el) => {
+    const id = el.getAttribute("data-id");
+
+    el.addEventListener("click", (e) => {
+      majorHandleButton(id);
+    });
+  });
+
+  const minorButtons = document.querySelectorAll("#minor");
+
+  minorButtons.forEach((el) => {
+    const id = el.getAttribute("data-id");
+
+    el.addEventListener("click", (e) => {
+      minorHandleButton(id);
+    });
+  });
   quantityNumberCart();
 };
 
+// CART VACIO
 const emptyCart = () => {
   if (cart.length === 0) {
     return (cartContainer.innerHTML = `
@@ -220,6 +269,8 @@ const emptyCart = () => {
   }
 };
 
+// Guardar en LS en el cart
+
 const localStoreCart = () => {
   const localMoney = JSON.parse(localStorage.getItem("moneyForPay"));
   let cartHTML = "";
@@ -232,9 +283,9 @@ const localStoreCart = () => {
         <h4 class="product-title">${el.title}</h4>
         <p> USD ${el.quantity * el.price}</p>
         <div class="price-content">
-          <a id="minor">-</a>
+          <p data-id=${el.id} id="minor">-</p>
           <p>${el.quantity}</p>
-          <a id="major">+</a>
+          <p data-id=${el.id} id="major">+</p>
         </div>
       </div>
     </div>
@@ -247,6 +298,25 @@ const localStoreCart = () => {
   </div>`;
     cartContainer.innerHTML = cartHTML;
   }
+  const majorButtons = document.querySelectorAll("#major");
+
+  majorButtons.forEach((el) => {
+    const id = el.getAttribute("data-id");
+
+    el.addEventListener("click", (e) => {
+      majorHandleButton(id);
+    });
+  });
+
+  const minorButtons = document.querySelectorAll("#minor");
+
+  minorButtons.forEach((el) => {
+    const id = el.getAttribute("data-id");
+
+    el.addEventListener("click", (e) => {
+      minorHandleButton(id);
+    });
+  });
 };
 
 //FUNCION QUE REVISA LA VISIBILIDAD DEL CARRITO
@@ -278,20 +348,7 @@ const quantityNumberCart = () => {
   counterCart.textContent = cartFullTotal;
 };
 
-const majorHandleEvent = () => {
-  updateCartUI();
-  const major = d.getElementById("major");
-
-  d.addEventListener("click", (e) => {
-    if (e.target === major) {
-      const productId = e.target.dataset.id;
-      const existingId = idElements.find((item) => item === productId);
-      if (existingId) {
-        console.log(existingId);
-      }
-    }
-  });
-};
+// VALIDACION DE FORMULARIO
 
 const validateForm = () => {
   const form = d.getElementById("contact-center");
@@ -308,10 +365,9 @@ const validateForm = () => {
   d.addEventListener("keyup", (e) => {
     if (e.target.matches(".ec-contact-form [required]")) {
       let inputTarget = e.target;
-      console.log(inputTarget.name);
+
       let pattern = inputTarget.pattern || inputTarget.dataset.pattern;
       if (pattern && inputTarget.value !== "") {
-        console.log(inputTarget.value);
         let regex = new RegExp(pattern);
 
         return !regex.exec(inputTarget.value)
@@ -333,7 +389,6 @@ const functionInit = () => {
   addToCartProducts();
   emptyCart();
   localStoreCart();
-  majorHandleEvent();
 };
 
 functionInit();
