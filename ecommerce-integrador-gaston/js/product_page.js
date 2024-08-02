@@ -161,6 +161,7 @@ const minorHandleButton = (id) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 
   updateCartUI();
+  emptyCart();
 };
 
 const addToCartProducts = () => {
@@ -257,6 +258,7 @@ const updateCartUI = () => {
 
 // CART VACIO
 const emptyCart = () => {
+  let cartHTML = "";
   if (cart.length === 0) {
     return (cartContainer.innerHTML = `
       <div class="empty-cart">
