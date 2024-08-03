@@ -139,8 +139,12 @@
     align-items: center;
   }
 
+  .ec-contact-form-error {
+    margin: 2px;
+  }
+
   .ec-contact {
-    height: 45vh;
+    height: 55vh;
   }
 
   form > * {
