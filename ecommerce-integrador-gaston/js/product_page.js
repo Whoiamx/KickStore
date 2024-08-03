@@ -263,7 +263,7 @@ const emptyCart = () => {
     return (cartContainer.innerHTML = `
       <div class="empty-cart">
       <div class="product-container-empty">
-      <p> Aun no has agregado ningun producto al carrito :(</p>
+      <p> Aun no has agregado ningun producto al carrito 😅</p>
       </div>
       </div>
       </div>

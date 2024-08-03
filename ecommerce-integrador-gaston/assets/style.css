@@ -145,7 +145,7 @@ li > a {
   font-size: 2.8em;
   color: #fce622dc;
   text-align: center;
-  text-shadow: 2.5px 2.5px 2.5px black;
+  text-shadow: 1px 1px 1px black;
   animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1)
     both;
 }
@@ -497,16 +497,13 @@ footer {
 
 .block {
   top: 80px;
-  right: 280px;
-  left: 1100px;
   z-index: 1;
   position: absolute;
   width: 220px;
-  min-height: 300px;
   background-color: #ffe600;
   border: 1px solid black;
   border-radius: 3.5px;
-  max-height: 680px;
+  max-height: 60vh;
   overflow-y: scroll;
 }
 
