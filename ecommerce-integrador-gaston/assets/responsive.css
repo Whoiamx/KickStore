@@ -3,9 +3,6 @@
 /* -------------------------------------------------------------------------- */
 
 @media (max-width: 1200px) {
-  * {
-    border: 1px solid red;
-  }
   .ec-contact {
     width: 100%;
     height: 60vh;
