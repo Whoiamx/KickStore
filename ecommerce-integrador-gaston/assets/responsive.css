@@ -3,6 +3,9 @@
 /* -------------------------------------------------------------------------- */
 
 @media (max-width: 1200px) {
+  * {
+    border: 1px solid red;
+  }
   .ec-contact {
     width: 100%;
     height: 60vh;
@@ -30,7 +33,7 @@
     display: block;
   }
   .nav-list {
-    display: block;
+    display: none;
   }
 
   .nav-list li:hover {
@@ -39,6 +42,50 @@
 
   .nav-list li > a:hover {
     color: white;
+  }
+
+  .foot-text p {
+    font-size: 8px;
+  }
+
+  #product-page {
+    display: grid;
+    grid-template-columns: 165px 165px 165px;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  #hero-title {
+    text-align: center;
+  }
+
+  #hero-subtitle {
+    display: none;
+  }
+
+  .product-title {
+    font-size: 15px;
+  }
+
+  .ec-hero {
+    height: 62vh;
+  }
+
+  .subtitle-off {
+    font-size: 13px;
+  }
+
+  .logeiton {
+    width: 100%;
+  }
+
+  .about-title {
+    font-size: 15px;
+  }
+
+  .about-subtitle {
+    font-size: 8px;
   }
 }
 
@@ -49,6 +96,10 @@
 @media (max-width: 414px) {
   header {
     padding: 0%;
+  }
+
+  .nav-list {
+    display: block;
   }
 
   .logeiton {
@@ -242,9 +293,8 @@
   }
 
   .list-footer-item a {
-    font-size: 5px;
+    font-size: 8px;
     text-align: center;
-    text-wrap: nowrap;
   }
 
   #helper {
