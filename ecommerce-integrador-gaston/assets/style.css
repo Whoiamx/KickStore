@@ -43,6 +43,9 @@ li > a {
   height: 30px;
   cursor: pointer;
 }
+#burger {
+  display: none;
+}
 
 .logo-ec {
   width: 100%;
@@ -266,6 +269,7 @@ span {
   padding: 2px;
   border-radius: 5px;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .btn-orange {
@@ -505,6 +509,7 @@ footer {
   border-radius: 3.5px;
   max-height: 60vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .block::-webkit-scrollbar {
@@ -624,4 +629,18 @@ textarea[required]:invalid {
     visibility: visible;
     opacity: 1;
   }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              MENU HAMBURGUESA                              */
+/* -------------------------------------------------------------------------- */
+
+.nav-list {
+  display: none;
+  position: absolute;
+  top: 65px;
+  left: 300px;
+  background-color: #ffe600;
+  border: 1px solid black;
+  border-radius: 3px;
 }

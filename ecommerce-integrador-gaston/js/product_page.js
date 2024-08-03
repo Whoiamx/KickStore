@@ -386,6 +386,22 @@ const validateForm = () => {
   });
 };
 
+const $buttonHamburguer = document.getElementById("menu-burguer");
+const $displayNav = document.querySelector(".nav-list");
+
+let menuAbierto = false;
+
+$buttonHamburguer.addEventListener("click", (e) => {
+  e.stopPropagation(); // Evita que el evento se propague y active el evento en el documento
+  if (menuAbierto === false) {
+    $displayNav.style.setProperty("display", "block");
+    menuAbierto = true;
+  } else {
+    $displayNav.style.setProperty("display", "none");
+    menuAbierto = false;
+  }
+});
+
 const functionInit = () => {
   filterActionSelection();
   addToCartProducts();

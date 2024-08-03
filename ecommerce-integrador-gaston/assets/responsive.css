@@ -26,6 +26,20 @@
     justify-content: center;
     align-items: center;
   }
+  #burger {
+    display: block;
+  }
+  .nav-list {
+    display: block;
+  }
+
+  .nav-list li:hover {
+    background-color: green;
+  }
+
+  .nav-list li > a:hover {
+    color: white;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -116,10 +130,6 @@
     height: 240px;
   }
 
-  .product {
-    width: 100%;
-  }
-
   .ec-filter {
     gap: 1rem;
   }
@@ -181,7 +191,6 @@
   .block {
     right: 20px;
     width: 50%;
-    height: 45vh;
   }
 
   #hero-title {
@@ -233,12 +242,26 @@
   }
 
   .list-footer-item a {
-    font-size: 10px;
+    font-size: 5px;
     text-align: center;
     text-wrap: nowrap;
   }
 
   #helper {
     width: 100%;
+  }
+
+  .nav-list {
+    padding: 10px;
+    min-height: 120px;
+  }
+
+  .search-navbar {
+    display: none;
+  }
+
+  .total-price {
+    width: auto;
+    height: auto;
   }
 }
