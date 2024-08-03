@@ -130,7 +130,7 @@
   }
 
   .about-card p {
-    font-size: 1px;
+    font-size: 10px;
   }
 
   .ec-contact-form {
@@ -229,7 +229,7 @@
   }
 
   .list-footer-item a {
-    font-size: 1px;
+    font-size: 10px;
     text-align: center;
     text-wrap: nowrap;
   }
